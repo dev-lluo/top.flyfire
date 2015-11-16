@@ -1,0 +1,25 @@
+package top.flyfire.degetation;
+
+public class Loop {
+	public interface Task<T>{
+		int BREAK = -1;
+		int NEXT = 0;
+		int CONTINUE = 1;
+		void run(T t, int index);
+		int needNext();
+	}
+	public static <T> void run(final T[] target,final Task<T> task){
+		Go.to(Validator.Obj.notNull(target)&&Validator.Obj.notNull(task), new Go.Task() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				for(int i = 0,flag=task.needNext();i<target.length;i++){
+					if(flag==Task.NEXT){
+						task.run(target[i], i);
+					}
+				}
+			}
+		});
+	}
+}

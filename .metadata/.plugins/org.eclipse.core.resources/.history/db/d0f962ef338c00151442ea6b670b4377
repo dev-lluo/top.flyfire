@@ -1,0 +1,10 @@
+package top.flyfire.degetation;
+
+public class Loop {
+	public interface class Task{
+		
+	}
+	public static void run(Object target,Task task){
+		
+	}
+}

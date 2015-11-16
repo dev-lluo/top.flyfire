@@ -1,0 +1,5 @@
+package top.flyfire.degetation;
+
+public interface Const {
+
+}

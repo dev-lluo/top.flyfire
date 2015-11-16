@@ -1,0 +1,11 @@
+package top.flyfire.degetation;
+
+public class Loop {
+	public interface Task<T>{
+		void run(T t, int index);
+		void needNext();
+	}
+	public static <T> void run(T[] target,Task<T> task){
+		Go.to(Validator.Obj.notNull(target), task);
+	}
+}

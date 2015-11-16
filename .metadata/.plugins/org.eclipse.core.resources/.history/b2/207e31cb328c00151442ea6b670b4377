@@ -1,0 +1,20 @@
+package top.flyfire.degetation;
+
+public final class Go {
+	public abstract class Task{
+		abstract void run();
+	}
+	public abstract class Validator{
+		abstract boolean validate();
+	}
+	public static void to(boolean flag,Task task){
+		if(flag){
+			task.run();
+		}
+	}
+	public static void to(Validator validator,Task task){
+		if(validator.validate()){
+			task.run();
+		}
+	}
+}
