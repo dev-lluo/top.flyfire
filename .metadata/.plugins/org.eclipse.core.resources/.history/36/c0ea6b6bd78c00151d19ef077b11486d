@@ -1,0 +1,27 @@
+package top.flyfire.degetation.loop;
+
+import top.flyfire.degetation.go.Go;
+import top.flyfire.degetation.go.Go.GoTask;
+import top.flyfire.degetation.validator.Validator;
+
+public class Loop implements Validator{
+	public interface LoopTask<T>{
+		boolean run(T t, int index);
+	}
+	public static <T> void run(final T[] target,final LoopTask<T> task){
+		Go.to(Obj.notNull(target)&&Obj.notNull(task), new GoTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				for(int i = 0;i<target.length;i++){
+					if(flag==LoopTask.NEXT){
+						task.run(target[i], i);
+					}else if(flag==LoopTask.BREAK){
+						break;
+					}
+				}
+			}
+		});
+	}
+}

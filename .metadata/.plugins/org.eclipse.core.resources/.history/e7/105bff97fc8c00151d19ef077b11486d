@@ -1,0 +1,37 @@
+package test;
+
+import java.io.IOException;
+
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.code.Package;
+import top.flyfire.degetation.loop.Loop;
+
+public class Main{
+	public static void main(String[] args) throws ClassNotFoundException {
+//		Loop.run(Package.allClassNameFrom("top"), new Loop.LoopTask<String>() {
+//
+//			@Override
+//			public boolean run(String t, int index) {
+//				// TODO Auto-generated method stub
+//				System.out.println(index+"@"+t);
+//				return false;
+//			}
+//		});
+		try {
+			System.out.println("!"+Const.LOADER.getResources("top.flyfire.test"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		Loop.run(Package.allClassNameFrom("top.flyfire.test.entity.EntityTest1"), new Loop.LoopTask<String>() {
+//
+//			@Override
+//			public boolean run(String t, int index) {
+//				// TODO Auto-generated method stub
+//				System.out.println(index+"@"+t);
+//				return false;
+//			}
+//		});
+	}
+}
+

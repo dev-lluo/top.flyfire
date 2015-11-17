@@ -1,0 +1,12 @@
+package top.flyfire.degetation.test;
+
+public class Timer {
+	public static final void run(){
+		long startTime = System.currentTimeMillis();
+		long endTime = System.currentTimeMillis();
+		System.out.println();
+	}
+	public interface TTask{
+		void run();
+	}
+}

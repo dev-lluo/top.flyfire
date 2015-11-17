@@ -1,0 +1,5 @@
+package top.flyfire.degetation.go;
+
+public interface KTask {
+
+}

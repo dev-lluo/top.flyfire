@@ -1,0 +1,8 @@
+package top.flyfire.degetation.loop;
+
+public abstract class LoopTask<T>{
+	int BREAK = -1;
+	int NEXT = 0;
+	int CONTINUE = 1;
+	int run(T t, int index);
+}

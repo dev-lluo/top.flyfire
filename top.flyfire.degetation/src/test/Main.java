@@ -1,0 +1,32 @@
+package test;
+
+import java.net.URISyntaxException;
+
+import top.flyfire.degetation.loop.Loop;
+import top.flyfire.degetation.util.PackageUtil;
+
+public class Main{
+	public static void main(String[] args) throws ClassNotFoundException, URISyntaxException {
+		Loop.run(PackageUtil.allClassNameFrom("top.flyfire.degetation.code"), new Loop.LoopTask<String>() {
+
+			@Override
+			public boolean run(String t, int index) {
+				// TODO Auto-generated method stub
+				System.out.println(index+"@"+t);
+				return false;
+			}
+		});
+		
+		Loop.run(PackageUtil.allClassNameFrom("org.apache.commons.fileupload.util"), new Loop.LoopTask<String>() {
+
+			@Override
+			public boolean run(String t, int index) {
+				// TODO Auto-generated method stub
+				System.out.println(index+"@"+t);
+				return false;
+			}
+		});
+	}
+	public static final synchronized void a(){};
+}
+

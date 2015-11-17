@@ -1,0 +1,13 @@
+package top.flyfire.degetation.test;
+
+import org.omg.Messaging.SyncScopeHelper;
+
+public class Timer {
+	public static final void run(){
+		long startTime = System.currentTimeMillis();
+		long endTime = System.currentTimeMillis();
+	}
+	public interface Task{
+		void run();
+	}
+}
