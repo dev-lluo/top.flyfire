@@ -1,0 +1,14 @@
+package top.flyfire.degetation.thread;
+
+public class RunTask <T> implements Runnable{
+	
+	private T result;
+	
+	@Override
+	public final void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

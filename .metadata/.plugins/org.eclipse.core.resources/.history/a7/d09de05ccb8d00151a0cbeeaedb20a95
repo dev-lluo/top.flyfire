@@ -1,0 +1,19 @@
+package top.flyfire.degetation.thread;
+
+import top.flyfire.degetation.Const;
+
+public class ThreadMgr implements Const {
+	
+	public static ThreadPool getThreadPool() {
+		return new ThreadPool(COPYRIGHT);
+	}
+	
+	public static ThreadPool getThreadPool(int worker_num1) {
+		if (worker_num1 <= 0)
+			worker_num1 = ThreadPool.worker_num;
+		if (threadPool == null)
+			threadPool = new ThreadPool(worker_num1);
+		return threadPool;
+	}
+
+}

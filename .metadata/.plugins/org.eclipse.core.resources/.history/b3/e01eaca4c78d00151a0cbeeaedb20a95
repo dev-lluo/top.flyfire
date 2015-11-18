@@ -1,0 +1,23 @@
+package top.flyfire.degetation.thread;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import top.flyfire.degetation.Const;
+
+public class ThreadPool implements Const  {
+	protected final String name;
+	protected final int size;
+	protected final Thread[] threads;
+	private List<RunTask<?>> taskQueue = new LinkedList<RunTask<?>>();
+	public ThreadPool(String name){
+		this(name,POOL_SIZE);
+	}
+	
+	public ThreadPool(String name,int size){
+		this.name = name;
+		this.size = size;
+		this.threads = new Thread[this.size];
+		for()
+	}
+}

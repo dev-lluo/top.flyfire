@@ -1,0 +1,56 @@
+package top.flyfire.degetation.console;
+
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.json.Json;
+
+public class DefaultConsole implements IConsole,Json,Const{
+	
+	@Override
+	public void log(Object obj) {
+		// TODO Auto-generated method stub
+		System.out.println(COPYRIGHT+"[LOG]"+AT+System.currentTimeMillis()+"|"+ObJ.convert(obj));
+	}
+
+	@Override
+	public void warn(Object obj) {
+		// TODO Auto-generated method stub
+		System.out.println(COPYRIGHT+"[WARN]"+AT+System.currentTimeMillis()+"|"+ObJ.convert(obj));
+	}
+
+	@Override
+	public void error(Object obj) {
+		// TODO Auto-generated method stub
+		System.out.println(COPYRIGHT+"[ERROR]"+AT+System.currentTimeMillis()+"|"+ObJ.convert(obj));
+	}
+
+	@Override
+	public void info(Object obj) {
+		// TODO Auto-generated method stub
+		System.out.println(COPYRIGHT+"[INFO]"+AT+System.currentTimeMillis()+"|"+ObJ.convert(obj));
+	}
+
+	@Override
+	public void log(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void warn(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void error(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void info(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

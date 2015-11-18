@@ -1,32 +1,32 @@
 package test;
 
-import java.net.URISyntaxException;
-
-import top.flyfire.degetation.loop.Loop;
-import top.flyfire.degetation.util.PackageUtil;
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.thread.RunTask;
+import top.flyfire.degetation.thread.ThreadMgr;
+import top.flyfire.degetation.thread.ThreadPool;
 
 public class Main{
-	public static void main(String[] args) throws ClassNotFoundException, URISyntaxException {
-		Loop.run(PackageUtil.allClassNameFrom("top.flyfire.degetation.code"), new Loop.LoopTask<String>() {
+	public static void main(String[] args)  {
+		ThreadPool poolMain1 = ThreadMgr.live();
+		ThreadPool poolMain2 = ThreadMgr.live();
+		RunTask<?> runTask = new RunTask<Object>() {
 
 			@Override
-			public boolean run(String t, int index) {
+			protected void exec() {
 				// TODO Auto-generated method stub
-				System.out.println(index+"@"+t);
-				return false;
+				for(int i = 0;i<100;i++){
+					ThreadPool pool = ThreadMgr.live();
+					Const.CONSOLE.info(pool.getPoolInfo());
+					pool.destroy();
+				}
 			}
-		});
+		};
+		poolMain1.execute(runTask);
+		poolMain2.execute(runTask);
+		poolMain1.destroy();
+		poolMain2.destroy();
+		//ThreadMgr.destory();
 		
-		Loop.run(PackageUtil.allClassNameFrom("org.apache.commons.fileupload.util"), new Loop.LoopTask<String>() {
-
-			@Override
-			public boolean run(String t, int index) {
-				// TODO Auto-generated method stub
-				System.out.println(index+"@"+t);
-				return false;
-			}
-		});
 	}
-	public static final synchronized void a(){};
 }
 

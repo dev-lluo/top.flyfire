@@ -1,0 +1,35 @@
+package top.flyfire.degetation.thread;
+
+import top.flyfire.degetation.Const;
+
+public abstract class RunTask <T> implements Runnable ,Const{
+	
+	protected T result;
+	
+	protected boolean needWait = true;
+	
+	@Override
+	public final void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	protected void doBefore(){
+		CONSOLE.info(System.currentTimeMillis());
+	}
+	
+	protected void doAfter() {
+		CONSOLE.info(System.currentTimeMillis());
+	}
+	
+	protected abstract void exec();
+	
+	public T result(){
+		synchronized (this) {
+			while(needWait);
+			return result;
+		}
+	}
+	
+
+}

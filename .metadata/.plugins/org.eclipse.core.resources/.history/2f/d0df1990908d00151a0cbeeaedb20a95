@@ -1,0 +1,8 @@
+package top.flyfire.degetation.console;
+
+public interface IConsole {
+	void log(Object obj);
+	void warn(Object obj);
+	void error(Object obj);
+	void info(Object obj);
+}

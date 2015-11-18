@@ -1,0 +1,45 @@
+package top.flyfire.degetation.console;
+
+import top.flyfire.degetation.go.Go;
+import top.flyfire.degetation.go.Go.GoTask;
+
+public class Console {
+	private static IConsole console = null;
+	static{
+		Go.nullTo(console, new GoTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				console = new DefaultConsole();
+			}
+		});
+	}
+	
+	public static void log(Object obj){
+		console.log(obj);
+	}
+	public static void warn(Object obj){
+		console.warn(obj);
+	}
+	public static void error(Object obj){
+		console.error(obj);
+	}
+	public static void info(Object obj){
+		console.info(obj);
+	}
+	
+	public static void log(Throwable e){
+		console.log(e);
+	}
+	public static void warn(Throwable e){
+		console.warn(e);
+	}
+	public static void error(Throwable e){
+		console.error(e);
+	}
+	public static void info(Throwable e){
+		console.info(e);
+	}
+	
+}

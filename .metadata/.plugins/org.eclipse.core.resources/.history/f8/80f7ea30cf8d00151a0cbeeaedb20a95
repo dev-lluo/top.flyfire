@@ -1,0 +1,66 @@
+package top.flyfire.degetation.thread;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import top.flyfire.degetation.Const;
+
+public class ThreadMgr implements Const {
+	
+	private ThreadMgr(){
+		System.exit(0);
+	}
+	
+	private static Map<String, ThreadPool> poolStore = new HashMap<String, ThreadPool>();
+	
+	public static ThreadPool getThreadPool() {
+		synchronized (poolStore) {
+			int id = poolStore.size();
+			String name = id+"."+COPYRIGHT;
+			ThreadPool pool = new ThreadPool(name);
+			poolStore.put(name, pool);
+			return pool;
+		}
+	}
+	
+	public static ThreadPool getThreadPool(int poolSize) {
+		if (poolSize <= 0)
+			poolSize = POOL_SIZE;
+		synchronized (poolStore) {
+			int id = poolStore.size();
+			String name = id+"."+COPYRIGHT;
+			ThreadPool pool = new ThreadPool(name,poolSize);
+			poolStore.put(name, pool);
+			return pool;
+		}
+	}
+	
+	public static ThreadPool geThreadPool(String name){
+		synchronized (poolStore) {
+			if(poolStore.containsKey(name)){
+				throw new RuntimeException("["+name+"]已经被使用，或该线程池已经被创建！！！");
+			}else{
+				ThreadPool pool = new ThreadPool(name,POOL_SIZE);
+				poolStore.put(name, pool);
+				return pool;
+			}
+			
+		}
+	}
+	
+	public static ThreadPool getThreadPool(String name,int poolSize) {
+		if (poolSize <= 0)
+			poolSize = POOL_SIZE;
+		synchronized (poolStore) {
+			if(poolStore.containsKey(name)){
+				throw new RuntimeException("["+name+"]已经被使用，或该线程池已经被创建！！！");
+			}else{
+				ThreadPool pool = new ThreadPool(name,poolSize);
+				poolStore.put(name, pool);
+				return pool;
+			}
+			
+		}
+	}
+
+}

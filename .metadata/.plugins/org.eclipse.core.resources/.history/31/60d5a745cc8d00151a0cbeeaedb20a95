@@ -1,0 +1,33 @@
+package top.flyfire.degetation.thread;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import top.flyfire.degetation.Const;
+
+public class ThreadMgr implements Const {
+	
+	private ThreadMgr(){
+		System.exit(0);
+	}
+	
+	private static Map<String, ThreadPool> poolStore = new HashMap<String, ThreadPool>();
+	
+	public static ThreadPool getThreadPool() {
+		synchronized (poolStore) {
+			int id = poolStore.size();
+			String name = id+"."+COPYRIGHT;
+			ThreadPool pool = new ThreadPool(name);
+			poolStore.put(name, pool);
+		}
+	}
+	
+	public static ThreadPool getThreadPool(int poolSize) {
+		if (poolSize <= 0)
+			poolSize = POOL_SIZE;
+		if (threadPool == null)
+			threadPool = new ThreadPool(worker_num1);
+		return threadPool;
+	}
+
+}

@@ -1,0 +1,62 @@
+package top.flyfire.degetation.console;
+
+import top.flyfire.degetation.go.Go;
+import top.flyfire.degetation.go.Go.GoTask;
+
+public class Console implements IConsole {
+	private static Console console = null;
+	static{
+		Go.nullTo(console, new GoTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				console = new Console();
+			}
+		});
+	}
+	public static Console defaultConsole() {
+		// TODO Auto-generated constructor stub
+		return console;
+	}
+	@Override
+	public void log(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void warn(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void error(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void info(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void log(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void warn(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void error(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void info(Throwable e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

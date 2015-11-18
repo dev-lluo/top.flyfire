@@ -31,4 +31,7 @@ public final class Go implements Validator {
 	public static final void notNullTo(Object obj,GoTask task){
 		Go.to(Obj.notNull(obj),task);
 	}
+	public static final void nullTo(Object obj,GoTask task){
+		Go.to(Obj.isNull(obj),task);
+	}
 }

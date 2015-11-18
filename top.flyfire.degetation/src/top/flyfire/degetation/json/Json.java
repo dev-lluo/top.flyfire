@@ -148,7 +148,7 @@ public interface Json {
 			Map objs = (Map)obj;
 			Set<Entry> entrySet = objs.entrySet();
 			for(Map.Entry entry : entrySet){
-				String temp = ObJ.convert(ObJ.convert(entry.getValue(),deep),deep);
+				String temp = ObJ.convert(entry.getValue(),deep);
 				if(temp==ObJ.defaultSkip)continue;
 				sb.append("\"");
 				sb.append(entry.getKey());
