@@ -1,0 +1,46 @@
+package top.flyfire.degetation.net.tcp;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.stream.Stream;
+import top.flyfire.degetation.thread.RunTask;
+
+public class ServerTask extends RunTask<Object> implements Const {
+	
+	private final Socket socket ;
+	private InputStream inputStream;
+	private OutputStream outputStream;
+	
+	public ServerTask(Socket socket) {
+		super();
+		this.socket = socket;
+	}
+
+	@Override
+	protected void exec() {
+		// TODO Auto-generated method stub
+		try {
+			this.inputStream = socket.getInputStream();
+			List<Byte> byList = new ArrayList<Byte>();
+			Stream.run(this.inputStream, new Stream.Task() {
+				
+				@Override
+				public void exec(byte[] by, int len) throws IOException {
+					// TODO Auto-generated method stub
+					Arrays.copyOfRange(by, 0, len);
+				}
+			});
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			CONSOLE.error(e);
+		}
+	}
+
+}

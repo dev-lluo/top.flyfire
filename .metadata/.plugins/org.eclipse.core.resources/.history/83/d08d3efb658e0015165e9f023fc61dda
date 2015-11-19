@@ -1,0 +1,31 @@
+package top.flyfire.degetation.net;
+
+import top.flyfire.degetation.protocol.Protocol;
+
+public class NetProtocol implements Protocol {
+
+	@Override
+	public int bewriteStart() {
+		// TODO Auto-generated method stub
+		return DEFAULT_BEWRITE_START;
+	}
+
+	@Override
+	public int bewriteStep() {
+		// TODO Auto-generated method stub
+		return DEFAULT_BEWRITE_STEP;
+	}
+
+	@Override
+	public byte[] protocol() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public byte[] content() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

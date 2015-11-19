@@ -1,8 +1,9 @@
 package top.flyfire.degetation.thread;
 
 import top.flyfire.degetation.Const;
+import top.flyfire.degetation.level.Level;
 
-public abstract class RunTask <T> implements Runnable ,Const{
+public abstract class RunTask <T> implements Runnable ,Level ,Const{
 	
 	protected T result;
 	
@@ -15,7 +16,15 @@ public abstract class RunTask <T> implements Runnable ,Const{
 		this.exec();
 		this.doAfter();
 	}
-	
+		
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 	protected void info(String info){
 		CONSOLE.info(info);
 	}

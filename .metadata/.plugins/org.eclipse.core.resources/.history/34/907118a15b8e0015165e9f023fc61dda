@@ -1,0 +1,144 @@
+package top.flyfire.degetation.thread;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.json.Json;
+
+public class ThreadPool implements Const  {
+	
+	public class RunThread extends Thread {
+		// 该工作线程是否有效，用于结束该工作线程
+				private boolean isRunning = true;
+				
+				protected String localName;
+				
+				private RunThread(int i){
+					this.localName = ThreadPool.this.name+"Thread-"+i;
+				}
+
+				public final String getLocalName(){
+					return this.localName;
+				}
+				/*
+				 * 关键所在啊，如果任务队列不空，则取出任务执行，若任务队列空，则等待
+				 */
+				@Override
+				public void run() {
+					RunTask<?> r = null;
+					while (isRunning) {// 注意，若线程无效则自然结束run方法，该线程就没用了
+						
+						synchronized (taskQueue) {
+							while (isRunning && taskQueue.isEmpty()) {// 队列为空
+								try {
+									taskQueue.wait(20);
+								} catch (InterruptedException e) {
+									CONSOLE.error(e);
+								}
+							}
+							if (!taskQueue.isEmpty()){
+								r = taskQueue.remove(0);// 取出任务
+								ThreadPool.this.curQueueSize--;
+								CONSOLE.info(this.localName+"|got task...");
+							}
+						}
+						if (r != null) {
+							r.info(this.localName);
+							long startTime = System.currentTimeMillis();
+							r.run();// 执行任务
+							long endTime = System.currentTimeMillis();
+							r.info(this.localName);
+							CONSOLE.info(this.localName+"@["+(endTime-startTime)+"s]finished task...");
+						}
+						r = null;
+					}
+				}
+
+				// 停止工作，让该线程自然执行完run方法，自然结束
+				public void stopWorker() {
+					isRunning = false;
+				}
+	}
+	
+	protected final String name;
+	protected final int size;
+	protected final RunThread[] threads;
+	protected volatile boolean isRunning = true;
+	private List<RunTask<?>> taskQueue = new LinkedList<RunTask<?>>();
+	private volatile int curQueueSize = 0;
+	public ThreadPool(String name){
+		this(name,POOL_SIZE);
+	}
+	
+	public ThreadPool(String name,int size){
+		this.name = name;
+		this.size = size;
+		this.threads = new RunThread[this.size];
+		for(int i = 0,len = threads.length;i<len;i++){
+			RunThread thread = new RunThread(i);
+			thread.start();
+			this.threads[i] = thread;
+		}
+	}
+	
+	public String getPoolInfo(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", this.name);
+		map.put("size", this.size);
+		map.put("curQueueSize", curQueueSize);
+		return Json.ObJ.convert(map);
+	}
+	
+	public String getPoolName(){
+		return this.name;
+	}
+	
+	public void execute(RunTask<?> task) {
+		if(isRunning)
+		synchronized (taskQueue) {
+			this.curQueueSize++;
+			taskQueue.add(task);
+			taskQueue.notify();
+		}
+	}
+	
+	public void execute(RunTask<?>[] tasks) {
+		if(isRunning)
+		synchronized (taskQueue) {
+			this.curQueueSize += tasks.length;
+			for (RunTask<?> t : tasks)
+				taskQueue.add(t);
+			taskQueue.notify();
+		}
+	}
+	
+	public void execute(List<RunTask<?>> tasks) {
+		if(isRunning)
+		synchronized (taskQueue) {
+			this.curQueueSize += tasks.size();
+			for (RunTask<?> t : tasks)
+				taskQueue.add(t);
+			taskQueue.notify();
+		}
+	}
+	
+	public void destroy() {
+		this.isRunning = false;
+		while (!taskQueue.isEmpty()) {// 如果还有任务没执行完成，就先睡会吧
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				CONSOLE.error(e);
+			}
+		}
+		// 工作线程停止工作，且置为null
+		for (int i = 0,len = this.size; i < len; i++) {
+			this.threads[i].stopWorker();
+			this.threads[i] = null;
+		}
+		taskQueue.clear();// 清空任务队列
+	}
+}

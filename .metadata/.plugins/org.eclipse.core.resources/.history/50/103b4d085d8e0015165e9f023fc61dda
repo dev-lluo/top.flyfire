@@ -1,0 +1,9 @@
+package top.flyfire.degetation.level;
+
+public interface Level {
+	int HADOOP = Integer.MAX_VALUE;
+	int FLYFIRE = 0;
+	int MOUSE = Integer.MIN_VALUE;
+	int DEFAULT = FLYFIRE;
+	int level();
+}

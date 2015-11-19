@@ -7,17 +7,18 @@ import java.util.Map;
 
 import top.flyfire.degetation.Const;
 import top.flyfire.degetation.json.Json;
+import top.flyfire.degetation.level.Level;
 
-public class ThreadPool implements Const  {
+public class ThreadPool implements Level, Const  {
 	
-	public class RunThread extends Thread {
+	public class RunThread extends Thread implements Level {
 		// 该工作线程是否有效，用于结束该工作线程
 				private boolean isRunning = true;
 				
 				protected String localName;
 				
 				private RunThread(int i){
-					this.localName = ThreadPool.this.name+"Thread-"+i;
+					this.localName = ThreadPool.this.name+".thread-"+i;
 				}
 
 				public final String getLocalName(){
@@ -42,7 +43,7 @@ public class ThreadPool implements Const  {
 							if (!taskQueue.isEmpty()){
 								r = taskQueue.remove(0);// 取出任务
 								ThreadPool.this.curQueueSize--;
-								CONSOLE.info(this.localName+"|got task...");
+								CONSOLE.info(this.localName+"|taken task...");
 							}
 						}
 						if (r != null) {
@@ -51,7 +52,7 @@ public class ThreadPool implements Const  {
 							r.run();// 执行任务
 							long endTime = System.currentTimeMillis();
 							r.info(this.localName);
-							CONSOLE.info(this.localName+"@["+(endTime-startTime)+"s]finished task...");
+							CONSOLE.info(this.localName+"@["+(endTime-startTime)+"ms]finished task...");
 						}
 						r = null;
 					}
@@ -60,6 +61,12 @@ public class ThreadPool implements Const  {
 				// 停止工作，让该线程自然执行完run方法，自然结束
 				public void stopWorker() {
 					isRunning = false;
+				}
+
+				@Override
+				public int level() {
+					// TODO Auto-generated method stub
+					return 0;
 				}
 	}
 	
@@ -140,5 +147,11 @@ public class ThreadPool implements Const  {
 			this.threads[i] = null;
 		}
 		taskQueue.clear();// 清空任务队列
+	}
+
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
