@@ -37,6 +37,7 @@ public class Client2 {
 	            byte[] data = new byte[head.length+content.length];
 	            System.out.println(data.length);
 	            System.arraycopy(head, 0, data, 0, head.length);
+	            System.out.println(data.toString());
 	            System.arraycopy(content, 0, data, head.length, content.length);
 	            System.out.println(Arrays.toString(data));
 	            out.write(data);

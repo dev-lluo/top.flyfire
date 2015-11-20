@@ -9,8 +9,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 
-import top.flyfire.degetation.net.Net;
-
 public class Client2 {
 	public static final String IP_ADDR = "localhost";//服务器地址 
 	public static final int PORT = 10001;//服务器端口号 
@@ -37,14 +35,14 @@ public class Client2 {
 	            byte[] data = new byte[head.length+content.length];
 	            System.out.println(data.length);
 	            System.arraycopy(head, 0, data, 0, head.length);
+	            System.out.println(data.toString());
 	            System.arraycopy(content, 0, data, head.length, content.length);
 	            System.out.println(Arrays.toString(data));
 	            out.write(data);
 	            out.flush();
-	            out.write(Net.DEFAULT_FLOW_END);
-	            out.flush();
         	} catch (Exception e) {
         		e.printStackTrace();
+        		System.out.println( e.getMessage()); 
         	} 
         }  
         

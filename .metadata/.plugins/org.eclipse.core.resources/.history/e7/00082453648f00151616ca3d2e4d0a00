@@ -10,7 +10,6 @@ import top.flyfire.degetation.net.Net;
 import top.flyfire.degetation.net.NetProtocol;
 import top.flyfire.degetation.stream.Stream;
 import top.flyfire.degetation.thread.RunTask;
-import top.flyfire.degetation.thread.ThreadMgr;
 
 public class ServerTask extends RunTask<Object> implements Const {
 	
@@ -52,16 +51,6 @@ public class ServerTask extends RunTask<Object> implements Const {
 		}
 	}
 	
-	
-	
-	@Override
-	protected void doAfter() {
-		// TODO Auto-generated method stub
-		super.doAfter();
-		this.inBytes = new byte[0];
-		ThreadMgr.live(Net.THREADPOOL).execute(this);
-	}
-
 	protected boolean flowEnd(byte[] by,int len) {
 		return len==Net.DEFAULT_FLOW_END.length
 				&&by[len-6]==Net.DEFAULT_FLOW_END[5]

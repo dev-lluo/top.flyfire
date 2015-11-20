@@ -13,7 +13,14 @@ public class NetProtocol implements Protocol {
 	 * 加密类型
 	 */
 	public static final int ENC = 1;
-	
+	/**
+	 * 内容有效范围
+	 */
+	public static final int VDMS = 2;
+	/**
+	 * 内容失效范围
+	 */
+	public static final int VDME = 3;
 	
 	@Override
 	public int bewriteStart() {

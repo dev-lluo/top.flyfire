@@ -1,0 +1,5 @@
+package top.flyfire.degetation.net;
+
+public class NetStream {
+	
+}

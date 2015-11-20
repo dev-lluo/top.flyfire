@@ -58,7 +58,6 @@ public class ServerTask extends RunTask<Object> implements Const {
 	protected void doAfter() {
 		// TODO Auto-generated method stub
 		super.doAfter();
-		this.inBytes = new byte[0];
 		ThreadMgr.live(Net.THREADPOOL).execute(this);
 	}
 

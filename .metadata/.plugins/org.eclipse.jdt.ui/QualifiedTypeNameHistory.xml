@@ -33,7 +33,6 @@
 <fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.level.Level"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadPool.RunThread"/>
 <fullyQualifiedTypeName name="java.net.ServerSocket"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.Const.Protocol"/>
@@ -41,7 +40,6 @@
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadPool"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadMgr"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.RunTask"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.ServerTask"/>
 <fullyQualifiedTypeName name="java.net.Socket"/>
@@ -53,11 +51,13 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.NetProtocol"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.Net"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.Server"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.json.Json"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.json.Json.ObJ"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.Net"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadMgr"/>
 </qualifiedTypeNameHistroy>

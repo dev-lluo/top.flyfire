@@ -27,8 +27,7 @@ public class Stream implements Const{
 		try {
 			for(int len = ins.read(by);len>0;len = ins.read(by)){
 				CONSOLE.info(by);
-				CONSOLE.info(len);
-				if(task.exec(by, len))return;
+				task.exec(by, len);
 			}
 			
 		} catch (IOException e) {
