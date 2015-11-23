@@ -3,7 +3,7 @@ package top.flyfire.degetation.net;
 
 import top.flyfire.degetation.protocol.Protocol;
 
-public class NetProtocol implements Protocol {
+public class NetProtocol implements Protocol ,Net {
 	
 	/**
 	 * 内容类型

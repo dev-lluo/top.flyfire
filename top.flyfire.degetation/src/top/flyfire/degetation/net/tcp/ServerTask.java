@@ -12,7 +12,7 @@ import top.flyfire.degetation.stream.Stream;
 import top.flyfire.degetation.thread.RunTask;
 import top.flyfire.degetation.thread.ThreadMgr;
 
-public class ServerTask extends RunTask<Object> implements Const {
+public class ServerTask extends RunTask<NetKVal> implements Const {
 	
 	protected static NetProtocol protocol = new NetProtocol();
 	
@@ -59,7 +59,7 @@ public class ServerTask extends RunTask<Object> implements Const {
 		// TODO Auto-generated method stub
 		super.doAfter();
 		this.inBytes = new byte[0];
-		ThreadMgr.live(Net.THREADPOOL).execute(this);
+		ThreadMgr.live(Net.THREADPOOL_SERVER).execute(this);
 	}
 
 	protected boolean flowEnd(byte[] by,int len) {
@@ -75,21 +75,8 @@ public class ServerTask extends RunTask<Object> implements Const {
 	protected void deal() throws IOException{
 		byte[] head = protocol.protocol(inBytes);
 		byte[] body = protocol.content(inBytes);
-		
-		byte ctype = protocol.protocol(head, NetProtocol.CTYPE);
-		if(ctype==Net.TXT){
-			this.dealTXT(head, body);
-		}else if(ctype==Net.IMG){
-			this.dealIMG(head, body);
-		}else if(ctype==Net.VOI){
-			this.dealVOI(head, body);
-		}else if(ctype==Net.VID){
-			this.dealVID(head, body);
-		}else if(ctype==Net.BIN){
-			this.dealBIN(head, body);
-		}else{
-			CONSOLE.error(inBytes);
-		}
+		this.result = new NetKVal(head, body, protocol);
+		CONSOLE.info(this.result);
 	}
 	
 	protected void recall(byte[] bytes) {
@@ -101,19 +88,5 @@ public class ServerTask extends RunTask<Object> implements Const {
 		}
 	}
 	
-	protected void dealTXT(byte[] head,byte[] body) throws IOException{
-		CONSOLE.info(new String(body,"UTF-8"));
-	}
-	protected void dealIMG(byte[] head,byte[] body){
-		
-	}
-	protected void dealVOI(byte[] head,byte[] body){
-		
-	}
-	protected void dealVID(byte[] head,byte[] body){
-		
-	}
-	protected void dealBIN(byte[] head,byte[] body){
-		
-	}
+
 }

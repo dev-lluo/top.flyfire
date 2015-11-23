@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="java.lang.Iterable"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.code.Package"/>
 <fullyQualifiedTypeName name="test.Main"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
@@ -39,25 +36,28 @@
 <fullyQualifiedTypeName name="top.flyfire.degetation.protocol.Protocol"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadPool"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.thread.RunTask"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.ServerTask"/>
-<fullyQualifiedTypeName name="java.net.Socket"/>
-<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.stream.Stream"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.stream.Stream.Task"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.NetProtocol"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.Server"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.json.Json"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.json.Json.ObJ"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.Net"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.KVal"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.NetProtocol"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.Net"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.Client"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadPool"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadMgr"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.thread.RunTask"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.NetKVal"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
 </qualifiedTypeNameHistroy>

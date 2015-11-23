@@ -1,9 +1,0 @@
-package top.flyfire.degetation;
-
-public interface Const {
-	/**
-	 * 默认缓冲大小
-	 */
-	int BUFFER_SIZE$Def = 1024;
-	
-}

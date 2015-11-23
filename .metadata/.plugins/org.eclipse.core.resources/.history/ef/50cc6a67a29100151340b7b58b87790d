@@ -1,0 +1,16 @@
+package top.flyfire.degetation.net.tcp;
+
+import java.net.Socket;
+
+import top.flyfire.degetation.net.Net;
+
+public class Client implements Net{
+	private final String host;
+	private final String port;
+	private final Socket socket;
+	public Client(String host,String port){
+		this.host = host;
+		this.port = port;
+		this.socket = new Socket(this.host, this.port);
+	}
+}

@@ -25,7 +25,7 @@ public class Server implements Net {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
 		}
-		this.pool = ThreadMgr.live(THREADPOOL);
+		this.pool = ThreadMgr.live(THREADPOOL_SERVER);
 	}
 	
 	public void start(){

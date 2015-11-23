@@ -5,7 +5,8 @@ public interface Net {
 	int DEFAULT_S_PORT = 10001;
 	int DEFAULT_C_PORT = 10002;
 	byte[] DEFAULT_FLOW_END = {-1,-1,-1,-1,-1,-1};
-	String THREADPOOL = "Net.Server.Pool";
+	String THREADPOOL_SERVER = "Net.Server.Pool";
+	String THREADPOOL_CLIENT = "Net.Client.Pool";
 	String CHARSET = "UTF-8";
 	byte TXT = 0;
 	byte IMG = 1;

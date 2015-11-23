@@ -26,8 +26,6 @@ public class Stream implements Const{
 		byte[] by = new byte[BUFFER_SIZE];
 		try {
 			for(int len = ins.read(by);len>0;len = ins.read(by)){
-				CONSOLE.info(by);
-				CONSOLE.info(len);
 				if(task.exec(by, len))return;
 			}
 			

@@ -1,0 +1,11 @@
+package top.flyfire.degetation.net.tcp;
+
+import top.flyfire.degetation.net.Net;
+
+public class Client implements Net{
+	private final String host;
+	private final String port;
+	public Client(){
+		
+	}
+}
