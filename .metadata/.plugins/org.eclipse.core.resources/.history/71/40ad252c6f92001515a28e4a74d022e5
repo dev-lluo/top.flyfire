@@ -1,0 +1,7 @@
+package top.flyfire.degetation.net.tcp;
+
+public class ServerEngine {
+	public static IServer On(IServer.ServerMode mode){
+		return null;
+	}
+}

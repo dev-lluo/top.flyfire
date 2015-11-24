@@ -1,0 +1,7 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.net.tcp.IServer;
+
+public class C2CServer implements IServer {
+
+}

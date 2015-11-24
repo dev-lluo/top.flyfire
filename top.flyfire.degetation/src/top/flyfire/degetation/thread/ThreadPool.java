@@ -112,7 +112,7 @@ public class ThreadPool implements Level, Const  {
 		}
 	}
 	
-	public void execute(RunTask<?>[] tasks) {
+	public void execute(RunTask<?>...tasks) {
 		if(isRunning)
 		synchronized (taskQueue) {
 			this.curQueueSize += tasks.length;

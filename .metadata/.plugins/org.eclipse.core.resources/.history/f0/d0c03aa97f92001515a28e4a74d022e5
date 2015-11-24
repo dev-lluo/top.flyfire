@@ -1,0 +1,126 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Properties;
+
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.UUID;
+import top.flyfire.degetation.buffer.BufferEngine;
+import top.flyfire.degetation.buffer.IBuffer;
+import top.flyfire.degetation.net.ServerEngine;
+import top.flyfire.degetation.stream.Stream;
+import top.flyfire.degetation.thread.RunTask;
+
+public class C2CServer extends ServerEngine {
+
+	private Properties properties = new Properties();
+
+	private ServerSocket serverSocket;
+	
+
+	public C2CServer(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+		InputStream inputStream = this.getClass().getResourceAsStream(PROPERTIES_NAME);
+		if (inputStream == null) {
+			inputStream = C2CServer.class.getResourceAsStream(PROPERTIES_NAME);
+		}
+		try {
+			properties.load(inputStream);
+			this.port = Integer.valueOf(properties.getProperty(SERVER_PORT));
+			this.serverSocket = new ServerSocket(this.port);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+		
+
+	}
+
+	@Override
+	public void start() throws IOException {
+		// TODO Auto-generated method stub
+		Socket socket = this.serverSocket.accept();
+		new Client(socket, UUID.$.createGUID());
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void exec() {
+		// TODO Auto-generated method stub
+		try {
+			this.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+
+	@Override
+	protected void doAfter() {
+		// TODO Auto-generated method stub
+		super.doAfter();
+		ServerEngine.enginePool.execute(this);
+	}
+
+
+	public class ClientBuffer implements IBuffer<byte[]> {
+
+		private byte[] by;
+		
+		@Override
+		public byte[] buffer() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
+
+	public class Client extends RunTask<Object> implements Const {
+		private BufferEngine inputEngine = new BufferEngine();
+		private BufferEngine outputEngine = new BufferEngine();
+		private Socket socket;
+		private InputStream inputStream;
+		private String guid;
+
+		public Client(Socket socket, String guid) {
+			this.socket = socket;
+			this.guid = guid;
+			try {
+				this.inputStream =socket.getInputStream();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException(e);
+			}
+		}
+		
+		public String guid(){
+			return guid;
+		}
+
+		@Override
+		protected void exec() {
+			// TODO Auto-generated method stub
+			Stream.run(this.inputStream, new Stream.Task() {
+				
+				@Override
+				public boolean exec(byte[] by, int len) throws IOException {
+					// TODO Auto-generated method stub
+					inputEngine.write(buffer);
+					return false;
+				}
+			});
+		}
+	}
+
+}

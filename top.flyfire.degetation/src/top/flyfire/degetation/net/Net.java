@@ -6,6 +6,7 @@ public interface Net {
 	int DEFAULT_C_PORT = 10002;
 	byte[] DEFAULT_FLOW_END = {-1,-1,-1,-1,-1,-1};
 	String THREADPOOL_SERVER = "Net.Server.Pool";
+	int THREADPOOL_SERVER_SIZE = 20;
 	String THREADPOOL_CLIENT = "Net.Client.Pool";
 	String CHARSET = "UTF-8";
 	byte TXT = 0;

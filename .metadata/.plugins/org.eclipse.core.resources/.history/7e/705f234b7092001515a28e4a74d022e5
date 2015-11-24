@@ -1,0 +1,19 @@
+package top.flyfire.degetation.net.tcp;
+
+public class ServerEngine {
+	public static IServer On(IServer.ServerMode mode){
+		if(IServer.ServerMode.C2C == mode){
+			
+		}else if(IServer.ServerMode.C2S == mode){
+			
+		}else if(IServer.ServerMode.SPIDER == mode){
+			
+		}else{
+			throw new RuntimeException("不支持的ServerMode["+mode+"]");
+		}
+	}
+	
+	public static void Off(IServer server){
+		server.stop();
+	}
+}

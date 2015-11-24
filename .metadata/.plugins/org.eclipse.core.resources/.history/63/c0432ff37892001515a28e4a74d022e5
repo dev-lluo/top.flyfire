@@ -1,0 +1,7 @@
+package top.flyfire.degetation.buffer;
+
+public interface IBuffer<T> {
+	T prefix();
+	T buffer();
+	T suffix();
+}

@@ -1,0 +1,36 @@
+package top.flyfire.degetation.net.tcp;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import top.flyfire.degetation.net.Net;
+import top.flyfire.degetation.thread.ThreadMgr;
+import top.flyfire.degetation.thread.ThreadPool;
+
+public class Client implements Net{
+	private final String host;
+	private final int port;
+	private Socket socket;
+	private ThreadPool pool;
+	public Client(String host,int port){
+		this.host = host;
+		this.port = port;
+		
+	}
+	
+	public void start(){
+		try {
+			this.socket = new Socket(this.host, this.port);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+		this.pool = ThreadMgr.live(THREADPOOL_CLIENT);
+	}
+	
+	
+}

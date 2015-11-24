@@ -1,5 +1,0 @@
-package top.flyfire.degetation.loop;
-
-public interface LoopTask {
-
-}

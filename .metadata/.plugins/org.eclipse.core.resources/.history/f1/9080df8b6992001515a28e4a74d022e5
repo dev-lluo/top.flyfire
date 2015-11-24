@@ -1,0 +1,21 @@
+package top.flyfire.degetation.buffer;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class BufferEngine {
+	private List<IBuffer<?>> bufferQueue = new LinkedList<IBuffer<?>>();
+	
+	public void write(IBuffer<?> buffer){
+		synchronized (bufferQueue) {
+			this.bufferQueue.add(buffer);
+		}
+	}
+	
+	public IBuffer<?> read(){
+		synchronized (bufferQueue) {
+			while(bufferQueue.isEmpty())bufferQueue.wait(10);
+			return bufferQueue.remove(0);
+		}
+	}
+}

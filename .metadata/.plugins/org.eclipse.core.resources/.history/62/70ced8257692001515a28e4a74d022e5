@@ -1,0 +1,15 @@
+package top.flyfire.degetation.net;
+
+public interface IServer {
+	public enum ServerMode{
+		C2C,C2S,SPIDER
+	}
+	
+	void start();
+	
+	void stop();
+	
+	String PROPERTIES_NAME = "server.properties";
+	
+	String SERVER_PORT = "server.port";
+}

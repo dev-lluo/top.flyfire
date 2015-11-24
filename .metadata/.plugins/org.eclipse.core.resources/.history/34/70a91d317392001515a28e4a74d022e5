@@ -1,0 +1,11 @@
+package top.flyfire.degetation.net.tcp;
+
+public interface IServer {
+	public enum ServerMode{
+		C2C,C2S,SPIDER
+	}
+	
+	void start();
+	
+	void stop();
+}

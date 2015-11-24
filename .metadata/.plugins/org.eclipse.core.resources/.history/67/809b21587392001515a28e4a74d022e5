@@ -1,0 +1,47 @@
+package top.flyfire.degetation.net;
+
+import top.flyfire.degetation.net.tcp.c2c.C2CServer;
+import top.flyfire.degetation.thread.RunTask;
+import top.flyfire.degetation.thread.ThreadMgr;
+import top.flyfire.degetation.thread.ThreadPool;
+
+public abstract class ServerEngine  extends RunTask<Object> implements IServer {
+	
+	private static String NAME = "ServerEngine";
+	
+	private static String PREFIX = "Server.";
+	
+	private static int index = 0;
+	
+	private static ThreadPool pool ;
+	static{
+		pool = ThreadMgr.live(NAME, 20);
+	}
+	
+	public synchronized static IServer On(IServer.ServerMode mode){
+		String name = PREFIX+mode.name()+"."+(index++);
+		if(IServer.ServerMode.C2C == mode){
+			IServer server = new C2CServer(name);
+			pool.execute(server);
+			return server;
+		}else if(IServer.ServerMode.C2S == mode){
+			return null;
+		}else if(IServer.ServerMode.SPIDER == mode){
+			return null;
+		}else{
+			throw new RuntimeException("不支持的ServerMode["+mode+"]");
+		}
+	}
+	
+	public static void Off(IServer server){
+		server.stop();
+	}
+	
+	protected final String name;
+	
+	protected int port;
+	
+	protected ServerEngine(String name){
+		this.name = name;
+	}
+}

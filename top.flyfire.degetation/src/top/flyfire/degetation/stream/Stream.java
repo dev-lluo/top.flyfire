@@ -26,7 +26,9 @@ public class Stream implements Const{
 		byte[] by = new byte[BUFFER_SIZE];
 		try {
 			for(int len = ins.read(by);len>0;len = ins.read(by)){
-				if(task.exec(by, len))return;
+				byte[] real = new byte[len];
+				System.arraycopy(by, 0, real, 0, len);
+				if(task.exec(real, len))return;
 			}
 			
 		} catch (IOException e) {

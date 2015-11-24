@@ -1,0 +1,26 @@
+package top.flyfire.degetation.net.tcp;
+
+import top.flyfire.degetation.net.tcp.c2c.C2CServer;
+
+public class ServerEngine {
+	
+	private static String PREFIX = "Server.";
+	
+	public synchronized static IServer On(IServer.ServerMode mode){
+		if(IServer.ServerMode.C2C == mode){
+			IServer server = new C2CServer();
+			server.start(serverName);
+			return ;
+		}else if(IServer.ServerMode.C2S == mode){
+			return null;
+		}else if(IServer.ServerMode.SPIDER == mode){
+			return null;
+		}else{
+			throw new RuntimeException("不支持的ServerMode["+mode+"]");
+		}
+	}
+	
+	public static void Off(IServer server){
+		server.stop();
+	}
+}
