@@ -1,0 +1,10 @@
+package top.flyfire.degetation.net;
+
+public class ServerConfig {
+	public enum Mode{
+		C2C
+	}
+	private int port;
+	private int threadPoolSize;
+	private Mode mode;
+}

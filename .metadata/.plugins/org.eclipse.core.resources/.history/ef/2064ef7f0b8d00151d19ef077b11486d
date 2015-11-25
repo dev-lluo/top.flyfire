@@ -1,7 +1,0 @@
-package top.flyfire.degetation.code;
-
-import top.flyfire.degetation.Structure;
-
-public abstract class Code <T extends Code> implements Structure<T> {
-	
-}

@@ -1,7 +1,6 @@
 package test;
 
 import top.flyfire.degetation.Const;
-import top.flyfire.degetation.net.tcp.Server;
 import top.flyfire.degetation.thread.RunTask;
 import top.flyfire.degetation.thread.ThreadMgr;
 import top.flyfire.degetation.thread.ThreadPool;
@@ -27,7 +26,6 @@ public class Main{
 //		poolMain1.destroy();
 //		poolMain2.destroy();
 		//ThreadMgr.destory();
-		new Server().start();
 		
 	}
 }

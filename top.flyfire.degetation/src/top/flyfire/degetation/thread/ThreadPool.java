@@ -42,7 +42,11 @@ public class ThreadPool implements Level, Const  {
 							}
 							if (!taskQueue.isEmpty()){
 								r = taskQueue.remove(0);// 取出任务
-								ThreadPool.this.curQueueSize--;
+								if(r.needRepeat()){
+									taskQueue.add(r);
+								}else{
+									ThreadPool.this.curQueueSize--;
+								}
 								CONSOLE.info(this.localName+"|taken task...");
 							}
 						}

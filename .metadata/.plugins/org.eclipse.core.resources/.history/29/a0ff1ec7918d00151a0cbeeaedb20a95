@@ -1,5 +1,0 @@
-package top.flyfire.degetation.console;
-
-public class Console {
-	private static Console console = new Console();
-}

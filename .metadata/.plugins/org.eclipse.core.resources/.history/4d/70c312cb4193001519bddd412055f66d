@@ -1,0 +1,36 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.net.Socket;
+
+import top.flyfire.degetation.buffer.BufferEngine;
+import top.flyfire.degetation.thread.RunTask;
+
+public class ClientSocket extends RunTask<Object> {
+	
+	private final Socket socket;
+	
+	private final String id;
+	
+	private final BufferEngine<byte[]> inputEngine;
+	
+	private final BufferEngine<byte[]> outputEngine;
+	
+	public ClientSocket(Socket socket, String id, BufferEngine<byte[]> inputEngine, BufferEngine<byte[]> outputEngine) {
+		super();
+		this.socket = socket;
+		this.id = id;
+		this.inputEngine = inputEngine;
+		this.outputEngine = outputEngine;
+	}
+
+
+
+
+
+	@Override
+	protected void exec() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

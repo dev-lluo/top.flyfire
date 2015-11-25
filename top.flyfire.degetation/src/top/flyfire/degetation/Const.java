@@ -50,7 +50,14 @@ public interface Const {
 	 * 当前运行目录
 	 */
 	String PATH = Const.URL.getPath();
-	
+	/**
+	 * ON
+	 */
+	boolean ON = true;
+	/**
+	 * OFF
+	 */
+	boolean OFF = false;
 	/**
 	 * 版权
 	 */

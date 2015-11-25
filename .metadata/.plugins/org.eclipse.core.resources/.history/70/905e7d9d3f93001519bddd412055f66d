@@ -1,0 +1,25 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.net.Socket;
+
+import top.flyfire.degetation.KVal;
+
+public class IdToSocket implements KVal<String, Socket> {
+	
+	private String id;
+	
+	private Socket socket;
+
+	@Override
+	public String key() {
+		// TODO Auto-generated method stub
+		return this.id;
+	}
+
+	@Override
+	public Socket val() {
+		// TODO Auto-generated method stub
+		return this.socket;
+	}
+
+}

@@ -1,0 +1,54 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+import top.flyfire.degetation.buffer.BufferEngine;
+import top.flyfire.degetation.thread.RunTask;
+
+public class ClientSocket  {
+	
+	private final Socket socket;
+	
+	private final BufferEngine<byte[]> inputEngine;
+	
+	private final BufferEngine<byte[]> outputEngine;
+	
+	private final OutputStream outputStream;
+	
+	private final InputStream inputStream;
+	
+	public ClientSocket(Socket socket, BufferEngine<byte[]> inputEngine, BufferEngine<byte[]> outputEngine) {
+		super();
+		this.socket = socket;
+		this.inputEngine = inputEngine;
+		this.outputEngine = outputEngine;
+		try {
+			this.inputStream = this.socket.getInputStream();
+			this.outputStream = this.socket.getOutputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+
+
+
+
+
+
+	protected void dealInput() {
+		if(this.inputStream.read(b))
+	}
+	
+	protected void dealOutput() {
+		
+	}
+	
+	
+	
+}

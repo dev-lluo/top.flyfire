@@ -1,0 +1,37 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import top.flyfire.degetation.KVal;
+import top.flyfire.degetation.buffer.BufferEngine;
+
+public class IdToBuffer implements KVal<String, BufferEngine<byte[]>> {
+	
+	private String id;
+	
+	private BufferEngine<byte[]> engine;
+
+	@Override
+	public String key() {
+		// TODO Auto-generated method stub
+		return this.id;
+	}
+
+	@Override
+	public BufferEngine<byte[]> val() {
+		// TODO Auto-generated method stub
+		return this.engine;
+	}
+	
+	
+	public IdToBuffer(String id,BufferEngine<byte[]> engine){
+		this.id = id;
+		this.engine = engine;
+	}
+	
+	public static class Store{
+		public final static Map<String,IdToBuffer> INPUT = new HashMap<String,IdToBuffer>();
+	}
+
+}

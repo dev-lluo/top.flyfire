@@ -22,7 +22,10 @@ public abstract class RunTask <T> implements Runnable ,Level ,Const{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	public boolean needRepeat(){
+		return false;
+	}
 
 
 	protected void info(String info){

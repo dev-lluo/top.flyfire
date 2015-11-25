@@ -1,2 +1,13 @@
 1448343533395	Rename type 'ServerMgr'
 1448345914789	Move compilation units
+1448429745256	Delete elements
+1448429754639	Delete element
+1448431963152	Encapsulate field 'port'
+1448431968243	Encapsulate field 'threadPoolSize'
+1448431972278	Encapsulate field 'mode'
+1448433255014	Rename type 'ClientStreamStore'
+1448438125429	Delete element
+1448438365757	Rename type 'IdToSocket'
+1448438478115	Rename type 'IdToOutput'
+1448438499799	Delete element
+1448438508971	Rename type 'IdToInputEngine'

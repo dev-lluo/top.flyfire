@@ -1,0 +1,25 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.net.ServerSocket;
+
+import top.flyfire.degetation.net.IServer;
+import top.flyfire.degetation.net.ServerConfig;
+
+public class C2CServer implements IServer {
+	
+	private ServerSocket socket;
+	private ServerConfig config;
+
+	@Override
+	public synchronized void startup(ServerConfig config) {
+		// TODO Auto-generated method stub
+		this.config = config;
+	}
+
+	@Override
+	public synchronized void shutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

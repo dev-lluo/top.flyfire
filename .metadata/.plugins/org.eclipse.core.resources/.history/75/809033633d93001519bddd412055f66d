@@ -1,0 +1,52 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import top.flyfire.degetation.Const;
+import top.flyfire.degetation.net.IServer;
+import top.flyfire.degetation.net.ServerConfig;
+
+public class C2CServer implements IServer,Const {
+	
+	private ServerSocket socket;
+	@SuppressWarnings("unused")
+	private ServerConfig config;
+	private boolean status = OFF;
+
+	@Override
+	public synchronized void startup(ServerConfig config) {
+		// TODO Auto-generated method stub
+		if(status==OFF){
+			this.config = config;
+			try {
+				this.socket = new ServerSocket(config.getPort());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException(e);
+			}
+		}
+	}
+	
+	protected void run() throws IOException {
+		Socket socket = null;
+		this.socket.accept();
+	}
+
+	@Override
+	public synchronized void shutdown() {
+		// TODO Auto-generated method stub
+		if(status==ON){
+			try {
+				this.socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException(e);
+			}
+			this.socket = null;
+			this.config = null;
+		}
+	}
+
+}
