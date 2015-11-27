@@ -1,5 +1,0 @@
-package top.flyfire.degetation.protocol;
-
-public interface Protocol {
-
-}

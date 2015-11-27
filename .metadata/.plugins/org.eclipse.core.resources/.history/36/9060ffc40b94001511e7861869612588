@@ -1,0 +1,10 @@
+package top.flyfire.degetation.cell;
+
+public interface Ring<T> {
+	int SEED = 11;
+	int PEAK_VAL = 100;
+	Ring<T> division();
+	void join(Ring<T> ring);
+	Ring<T> roll();
+	T cell();
+}

@@ -102,6 +102,7 @@ public class C2CServer implements IServer,Const {
 			IdToBuffer.Store.putOutput(buffer1);
 			
 			new ClientSocket(this.socket, inputEngine, outputEngine);
+			this.socket = null;
 		}
 		
 	}

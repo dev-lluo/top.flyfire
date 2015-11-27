@@ -1,0 +1,8 @@
+package top.flyfire.degetation.cell;
+
+public interface Ring<T> {
+	String SEED = 100;
+	void division();
+	void join(Ring<T> ring);
+	Ring<T> roll();
+}

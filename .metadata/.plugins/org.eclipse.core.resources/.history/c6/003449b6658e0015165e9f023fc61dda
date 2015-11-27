@@ -1,7 +1,0 @@
-package top.flyfire.degetation.net;
-
-import top.flyfire.degetation.Const.Protocol;
-
-public class NetProtocol implements Protocol {
-
-}

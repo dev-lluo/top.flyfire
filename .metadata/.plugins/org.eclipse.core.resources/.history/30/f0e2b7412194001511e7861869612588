@@ -1,0 +1,84 @@
+package top.flyfire.degetation.tree.binarytree;
+
+import java.util.List;
+
+@SuppressWarnings("all")
+public class HashBTreeGroup<O extends Comparable<O>> {
+	 BinaryTree[] table; // 槽数组，也称桶数组。
+     int count; // table中实际存放的Entry数量。
+     int threshold; // 当table数量超过该阈值后，进行reash。（该值为 capacity * loadFactor）
+     float loadFactor; // 加载因子，默认是0.75f。
+     
+     public HashBTreeGroup(){
+    	 this(11,0.75f);
+     }
+ 
+     public HashBTreeGroup(int initialCapacity/*默认是11*/, float loadFactor) {
+          if(initialCapacity==0) initialCapacity=1;
+          this.loadFactor = loadFactor;
+          this.table = new BTree[initialCapacity];
+          this.threshold = (int)(initialCapacity * loadFactor);
+     }
+ 
+     // put()： 若key存在，返回旧value；若key不存在，返回null。
+     public synchronized O put(O o) {
+          // 检查key是否已经存在，若存在则覆盖已经存在value，并返回被覆盖的value。
+    	  BinaryTree tab[] = table;
+          int hash = o.hashCode();
+          int index = (hash & 0x7FFFFFFF) % tab.length; // 存储槽位索引。
+          BinaryTree e = tab[index];
+          if(e!=null){
+        	  BinaryTreeNode node = (BinaryTreeNode) e.find(o);
+        	  O old = (O) node.owner();
+        	  node.owner(o);
+        	  return old;
+          }
+
+          // 是否需要rehash
+          if(count >= threshold){
+               rehash();
+               tab = table; // rehash完毕后，修正tab指针指向新的Entry[]
+               index =  (hash & 0x7FFFFFFF) % tab.length; // 重新计算Slot的index
+          }
+ 
+          // 存储到槽位，如果有冲突，新来的元素被放到了链表前面。
+          tab[index].insert(o);
+//          BinaryTree<O> x = tab[index]; // 旧有Entry
+//          tab[index] = new BTree<O>();//new Entry<>(hash,key,value,e/* 旧有Entry成为了新增Entry的next */)
+//          tab[index].buildTree(oArr);
+          count ++;
+          return null;
+     }
+     
+     public synchronized O get(Object key) {
+    	 	BinaryTree tab[] = table;
+    		int hash = key.hashCode();
+    		int index = (hash & 0x7FFFFFFF) % tab.length;
+    		BinaryTree e = tab[index] ;
+    		if(e!=null){
+    			BinaryTreeNode node = (BinaryTreeNode) e.find(key);
+    			return (O) (node!=null?node.owner():null);
+    		}
+    		return null;
+    	}
+ 
+     // rehash(): 再次hash。当Entry[]的实际存储数量占分配容量的约75%时，扩容并且重新计算各个对象的槽位
+     static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8 ;
+     protected void rehash() {
+          int oldCapacity = table.length;
+          BinaryTree<O>[] oldGroup = table;
+          int newCapacity = (oldCapacity << 1) + 1; // 2倍+1
+          BinaryTree[] newGroup = new BinaryTree[newCapacity];
+          threshold = (int)(newCapacity * loadFactor);
+          table = newGroup;
+ 
+          for( int i=oldCapacity; i-- >0;){ //  i的取值范围为 [oldCapacity-1,0]
+        	  BinaryTree old = oldGroup[i];
+        	  if( old!=null){
+        		  List oldList = old.sortAsList();
+        		  newGroup[i].buildTree(oldList);
+        	  }
+          }
+ 
+     }
+}

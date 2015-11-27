@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.ServerTask"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.Server"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.json.Json"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.json.Json.ObJ"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.NetProtocol"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.Net"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.Client"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.NetKVal"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.IServer.ServerMode"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.IServer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.ServerEngine"/>
@@ -30,7 +16,6 @@
 <fullyQualifiedTypeName name="top.flyfire.degetation.go.Go"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.go.Go.GoTask"/>
 <fullyQualifiedTypeName name="java.net.ServerSocket"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.KVal"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToSocket"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
@@ -52,7 +37,6 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.Dictionary"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer.Store"/>
 <fullyQualifiedTypeName name="java.net.Socket"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.NewClient"/>
@@ -60,4 +44,20 @@
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.ServerConfig"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadMgr"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.RunTask"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.KVal"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer.IdEntry"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.cell.Ring"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.cell.HashRing"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.tree.Tree"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.tree.Node"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.tree.binarytree.BinaryTree"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.tree.binarytree.BinaryTreeNode"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.tree.binarytree.BTree"/>
+<fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
+<fullyQualifiedTypeName name="java.lang.Comparable"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.tree.binarytree.HashBTreeGroup"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

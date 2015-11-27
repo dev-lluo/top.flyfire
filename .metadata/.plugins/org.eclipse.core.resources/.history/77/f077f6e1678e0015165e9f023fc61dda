@@ -1,6 +1,0 @@
-package top.flyfire.degetation.net;
-
-public interface Net {
-	String LOCAL_ADDR = "127.0.0.1";
-	int DEFAULT_PORT = 10000;
-}

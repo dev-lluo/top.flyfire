@@ -1,0 +1,13 @@
+package flyfire.framework.tree.binarytree;
+
+import flyfire.framework.tree.Node;
+
+@SuppressWarnings("rawtypes")
+public interface BinaryTreeNode<O extends Comparable<O>> extends Node<O, BinaryTreeNode>{
+	BinaryTreeNode<O> left();
+	void left(BinaryTreeNode<O> node);
+	BinaryTreeNode<O> right();
+	void right(BinaryTreeNode<O> node);
+	int count();
+	int countIncrement();
+}

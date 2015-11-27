@@ -1,0 +1,76 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
+
+import top.flyfire.degetation.KVal;
+import top.flyfire.degetation.buffer.BufferEngine;
+
+public class IdToBuffer implements KVal<String, BufferEngine<byte[]>> {
+	
+	private String id;
+	
+	private BufferEngine<byte[]> engine;
+
+	@Override
+	public String key() {
+		// TODO Auto-generated method stub
+		return this.id;
+	}
+
+	@Override
+	public BufferEngine<byte[]> val() {
+		// TODO Auto-generated method stub
+		return this.engine;
+	}
+	
+	
+	public IdToBuffer(String id,BufferEngine<byte[]> engine){
+		this.id = id;
+		this.engine = engine;
+	}
+	
+	public static class Store{
+		private final static Dictionary<String,IdToBuffer> INPUT = new Hashtable<String,IdToBuffer>();
+		
+		private final static Dictionary<String,IdToBuffer> OUTPUT = new Hashtable<String,IdToBuffer>();
+		
+		public static void putInput(IdToBuffer idToBuffer){
+			INPUT.put(idToBuffer.id, idToBuffer);
+		}
+		
+		public static IdToBuffer findInput(String id){
+			return INPUT.get(id);
+		}
+		
+		public static void putOutput(IdToBuffer idToBuffer){
+			OUTPUT.put(idToBuffer.id, idToBuffer);
+		}
+		
+		public static IdToBuffer findOutput(String id){
+			return OUTPUT.get(id);
+		}
+	}
+	
+	public class IdEntry implements KVal<String, IdToBuffer>{
+		
+		private String key;
+		
+		private IdToBuffer val;
+		
+		private IdEntry next;
+		@Override
+		public String key() {
+			// TODO Auto-generated method stub
+			return this.key;
+		}
+
+		@Override
+		public IdToBuffer val() {
+			// TODO Auto-generated method stub
+			return this.val;
+		}
+		
+	}
+
+}

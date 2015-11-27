@@ -1,0 +1,52 @@
+package top.flyfire.degetation.cell;
+
+public class HashRing<T> implements Ring<T> {
+	
+	private int seed;
+	
+	private int peakVal;
+	
+	private T cell;
+	
+	private Ring<T> next;
+	
+	private int size = 0;
+	
+	
+	public HashRing() {
+		// TODO Auto-generated constructor stub
+		this(SEED,PEAK_VAL);
+	}
+	
+	public HashRing(int seed,int peakVal) {
+		// TODO Auto-generated constructor stub
+		this.seed = seed;
+		this.peakVal = peakVal;
+	}
+
+
+	@Override
+	public Ring<T> division() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void join(Ring<T> ring) {
+		// TODO Auto-generated method stub
+		this.
+	}
+
+	@Override
+	public Ring<T> roll() {
+		// TODO Auto-generated method stub
+		return this.next;
+	}
+
+	@Override
+	public T cell() {
+		// TODO Auto-generated method stub
+		return this.cell;
+	}
+
+}

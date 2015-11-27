@@ -1,0 +1,16 @@
+package flyfire.framework.tree.binarytree;
+
+import java.util.List;
+
+public class BTreeTest {
+	public static void main(String[] args) {
+		Integer[] iArr = new Integer[]{1002,1,2,12,43,12,-12,23,45,1002,90,12,-23,45,9,-1233,-123,345};
+		System.out.println(iArr.length);
+		BTree<Integer> bTree = new BTree<Integer>();
+		bTree.buildTree(iArr);
+		List<Integer> iList = bTree.sortAsList();
+		for(int i = 0;i<iList.size();i++){
+			System.out.println(iList.get(i));
+		}
+	}
+}
