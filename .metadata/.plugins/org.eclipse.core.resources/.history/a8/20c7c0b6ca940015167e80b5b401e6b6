@@ -1,0 +1,27 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.buffer.IBuffer;
+
+public class StreamBuffer implements IBuffer<byte[][]> {
+	
+	private byte[][] byTemp = 
+
+	@Override
+	public byte[][] unLoad() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void load(byte[][] t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,6 @@
+package top.flyfire.degetation.net;
+
+public interface IClient {
+	void startup(ServerConfig config);
+	void shutdown();
+}

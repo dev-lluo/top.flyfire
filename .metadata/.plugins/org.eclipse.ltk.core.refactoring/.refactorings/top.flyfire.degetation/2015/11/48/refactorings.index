@@ -14,3 +14,8 @@
 1448520240296	Rename type 'Cell'
 1448522544104	Delete element
 1448522890174	Delete element
+1448603407526	Delete element
+1448607256377	Encapsulate field 'idx'
+1448607260269	Encapsulate field 'mode'
+1448607264280	Encapsulate field 'serverAddr'
+1448607267871	Encapsulate field 'port'

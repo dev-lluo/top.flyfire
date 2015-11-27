@@ -1,0 +1,10 @@
+package top.flyfire.degetation.net;
+
+public class ClientConfig {
+	
+	private static int index = 0;
+	
+	public enum Mode{
+		C2C
+	}
+}

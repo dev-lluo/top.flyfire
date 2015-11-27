@@ -1,8 +1,10 @@
 package top.flyfire.degetation.net.tcp.c2c;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 import top.flyfire.degetation.Const;
 import top.flyfire.degetation.UUID;
@@ -43,10 +45,15 @@ public class C2CServer implements IServer,Const {
 				// TODO Auto-generated catch block
 				throw new RuntimeException(e);
 			}
+			this.status = ON;
 		}
 	}
 	
 	protected void run() throws IOException {
+		for(int i = 0;i<20;i++){
+			SwapClientBuffer swap = new SwapClientBuffer();
+			this.swapClientPool.execute(swap);
+		}
 		Socket clientSocket = this.socket.accept();
 		do{
 			this.newClientPool.execute(new NewClient(clientSocket));
@@ -69,6 +76,7 @@ public class C2CServer implements IServer,Const {
 			ThreadMgr.die(SWAPCLIENT_BUFFER+config.getIdx());
 			this.newClientPool = null;
 			this.swapClientPool = null;
+			this.status = OFF;
 		}
 	}
 	
@@ -92,8 +100,8 @@ public class C2CServer implements IServer,Const {
 			 */
 			String inputId = UUID.$.createGUID();
 			String outputId = UUID.$.createGUID();
-			BufferEngine<byte[]> inputEngine = new BufferEngine<byte[]>();
-			BufferEngine<byte[]> outputEngine = new BufferEngine<byte[]>();
+			BufferEngine<byte[][]> inputEngine = new BufferEngine<byte[][]>();
+			BufferEngine<byte[][]> outputEngine = new BufferEngine<byte[][]>();
 			
 			IdToBuffer buffer0 = new IdToBuffer(inputId, inputEngine);
 			IdToBuffer.Store.putInput(buffer0);
@@ -112,7 +120,22 @@ public class C2CServer implements IServer,Const {
 		@Override
 		protected void exec() {
 			// TODO Auto-generated method stub
-			
+			List<IdToBuffer> bufferList = IdToBuffer.Store.allInput();
+			StreamBuffer buffer = new StreamBuffer();
+			for(IdToBuffer idToBuffer : bufferList){
+				idToBuffer.val().read(buffer);
+				if(!buffer.isEmpty()){
+					try {
+						String id = new String(buffer.unLoad(StreamBuffer.HEAD),"UTF-8");
+						byte[] head = idToBuffer.key().getBytes("UTF-8");
+						buffer.replace(head, StreamBuffer.HEAD);
+						IdToBuffer.Store.findOutput(id).val().write(buffer);
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						Const.CONSOLE.error(e);
+					}
+				}
+			}
 		}
 
 		@Override

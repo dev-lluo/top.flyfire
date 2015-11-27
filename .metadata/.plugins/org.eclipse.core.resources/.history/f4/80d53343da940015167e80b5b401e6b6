@@ -1,0 +1,7 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.net.IClient;
+
+public class C2Client implements IClient{
+
+}

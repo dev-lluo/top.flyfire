@@ -8,7 +8,6 @@ import java.net.Socket;
 
 import top.flyfire.degetation.Const;
 import top.flyfire.degetation.buffer.BufferEngine;
-import top.flyfire.degetation.buffer.IBuffer;
 import top.flyfire.degetation.stream.Stream;
 import top.flyfire.degetation.stream.Stream.Task;
 import top.flyfire.degetation.thread.RunTask;
@@ -19,9 +18,9 @@ public class ClientSocket  {
 	
 	private final Socket socket;
 	
-	private final BufferEngine<byte[]> inputEngine;
+	private final BufferEngine<byte[][]> inputEngine;
 	
-	private final BufferEngine<byte[]> outputEngine;
+	private final BufferEngine<byte[][]> outputEngine;
 	
 	private final OutputStream outputStream;
 	
@@ -37,7 +36,7 @@ public class ClientSocket  {
 	
 	private final ThreadPool pool;
 	
-	public ClientSocket(Socket socket, BufferEngine<byte[]> inputEngine, BufferEngine<byte[]> outputEngine) {
+	public ClientSocket(Socket socket, BufferEngine<byte[][]> inputEngine, BufferEngine<byte[][]> outputEngine) {
 		super();
 		this.socket = socket;
 		this.inputEngine = inputEngine;
@@ -59,57 +58,26 @@ public class ClientSocket  {
 		
 	}
 	
-	public class StreamBuffer implements IBuffer<byte[]>{
-		
-		private byte[] buffer;
-		
-		public StreamBuffer(){
-			this(new byte[0]);
-		}
 
-		public StreamBuffer(byte[] buffer) {
-			super();
-			this.buffer = buffer;
-		}
-
-		@Override
-		public byte[] unLoad() {
-			// TODO Auto-generated method stub
-			byte[] temp = this.buffer;
-			this.buffer = null;
-			return temp;
-			
-		}
-
-		@Override
-		public void load(byte[] t) {
-			// TODO Auto-generated method stub
-			this.buffer = t;
-		}
-
-		@Override
-		public boolean isEmpty() {
-			// TODO Auto-generated method stub
-			return this.buffer==null||this.buffer.length==0;
-		}
-
-		
-	}
 	
-	public class DealInput extends RunTask<byte[]>{
+	public class DealInput extends RunTask<byte[][]>{
 
 		@Override
 		protected void exec() {
 			// TODO Auto-generated method stub
+			final StreamBuffer buffer = new StreamBuffer();
 			Stream.run(ClientSocket.this.inputStream, new Task() {
 				
 				@Override
 				public boolean exec(byte[] by, int len) throws IOException {
 					// TODO Auto-generated method stub
-					ClientSocket.this.inputEngine.write(new StreamBuffer(by));
-					return false;
+					boolean isEnd = buffer.isEnd(by);
+					int pos = buffer.isEmpty()?StreamBuffer.HEAD:(isEnd?StreamBuffer.FOOT:StreamBuffer.BODY);
+					buffer.load(by, pos);
+					return isEnd;
 				}
 			});
+			ClientSocket.this.inputEngine.write(buffer);
 		}
 		
 		@Override
@@ -129,7 +97,11 @@ public class ClientSocket  {
 			ClientSocket.this.outputEngine.read(buffer);
 			if(!buffer.isEmpty()){
 				try {
-					ClientSocket.this.outputStream.write(buffer.unLoad());
+					ClientSocket.this.outputStream.write(buffer.unLoad(StreamBuffer.HEAD));
+					ClientSocket.this.outputStream.flush();
+					ClientSocket.this.outputStream.write(buffer.unLoad(StreamBuffer.BODY));
+					ClientSocket.this.outputStream.flush();
+					ClientSocket.this.outputStream.write(buffer.unLoad(StreamBuffer.FOOT));
 					ClientSocket.this.outputStream.flush();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

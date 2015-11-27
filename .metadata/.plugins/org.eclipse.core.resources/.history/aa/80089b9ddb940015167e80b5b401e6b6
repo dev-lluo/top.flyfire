@@ -1,0 +1,26 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.net.Socket;
+
+import top.flyfire.degetation.net.ClientConfig;
+import top.flyfire.degetation.net.IClient;
+
+public class C2Client implements IClient{
+
+	private Socket socket;
+	
+	
+	@Override
+	public void startup(ClientConfig config) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void shutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+}

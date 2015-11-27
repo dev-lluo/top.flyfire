@@ -1,0 +1,39 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import top.flyfire.degetation.net.ClientConfig;
+import top.flyfire.degetation.net.IClient;
+
+public class C2Client implements IClient{
+
+	private Socket socket;
+	
+	private ClientConfig config;
+	
+	
+	@Override
+	public void startup(ClientConfig config) {
+		// TODO Auto-generated method stub
+		this.config = config;
+		try {
+			this.socket = new Socket(config.getServerAddr(), config.getPort());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public void shutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+}

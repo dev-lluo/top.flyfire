@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.IServer.ServerMode"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.IServer"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.ServerEngine"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer"/>
-<fullyQualifiedTypeName name="java.util.Properties"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.lang.Throwable"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.Client"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.ServerEngine"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.ClientBuffer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.ClientOutput"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.IServer"/>
@@ -19,17 +12,13 @@
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToSocket"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
-<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 <fullyQualifiedTypeName name="java.net.InetAddress"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.stream.Stream"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.stream.Stream.Task"/>
 <fullyQualifiedTypeName name="java.lang.Iterable"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.StreamBuffre"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.buffer.IBuffer"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.StreamBuffer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.DealInput"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.DealOutput"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.buffer.BufferEngine"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.UUID"/>
@@ -37,8 +26,6 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.Dictionary"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer.Store"/>
-<fullyQualifiedTypeName name="java.net.Socket"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.NewClient"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.thread.ThreadPool"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.ServerConfig"/>
@@ -57,7 +44,20 @@
 <fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
 <fullyQualifiedTypeName name="java.lang.Comparable"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.tree.binarytree.HashBTreeGroup"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.buffer.IBuffer"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.StreamBuffer"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.StreamBuffer"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer.Store"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.SwapClientBuffer"/>
+<fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthSpinnerUI"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.IClient"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.ClientConfig"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="javax.management.RuntimeErrorException"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 </qualifiedTypeNameHistroy>
