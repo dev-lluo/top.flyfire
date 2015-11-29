@@ -15,7 +15,7 @@ public class StreamBuffer implements IBuffer<byte[][]>{
 	private byte[][] buffer;
 	
 	public StreamBuffer(){
-		this(new byte[0][0]);
+		this(new byte[3][0]);
 	}
 
 	public StreamBuffer(byte[][] buffer) {
@@ -56,7 +56,7 @@ public class StreamBuffer implements IBuffer<byte[][]>{
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return this.buffer==null||this.buffer.length==0;
+		return this.buffer==null||(this.buffer[0].length==0&&this.buffer[1].length==0&&this.buffer[2].length==0);
 	}
 
 	

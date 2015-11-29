@@ -3,6 +3,8 @@ package top.flyfire.degetation.tree.binarytree;
 import java.util.ArrayList;
 import java.util.List;
 
+import top.flyfire.degetation.go.Go;
+
 @SuppressWarnings("rawtypes")
 public class BTree<O extends Comparable<O>> implements BinaryTree<O> {
 
@@ -51,7 +53,7 @@ public class BTree<O extends Comparable<O>> implements BinaryTree<O> {
 	}
 	
 	protected BinaryTreeNode find(O o,BinaryTreeNode<O> node) {
-		if(o==null||root==null){
+		if(o==null||root==null||node.owner()==null){
 			return null;
 		}if(o.compareTo(node.owner())==0){
 			return node;
@@ -122,10 +124,17 @@ public class BTree<O extends Comparable<O>> implements BinaryTree<O> {
 		return oArr;
 	}
 	
-	protected void sortAsList(BinaryTreeNode<O> node,List<O> oArr) {
+	protected void sortAsList(final BinaryTreeNode<O> node,final List<O> oArr) {
 	    if(node != null) {
 	    	sortAsList(node.left(),oArr);
-	        oArr.add(node.owner());
+	        Go.notNullTo(node.owner(), new Go.GoTask() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					oArr.add(node.owner());
+				}
+			});
 	        sortAsList(node.right(),oArr);
 	    }
 	}

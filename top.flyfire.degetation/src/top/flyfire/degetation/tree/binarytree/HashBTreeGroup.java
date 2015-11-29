@@ -3,6 +3,8 @@ package top.flyfire.degetation.tree.binarytree;
 import java.util.ArrayList;
 import java.util.List;
 
+import top.flyfire.degetation.Const;
+
 @SuppressWarnings("all")
 public class HashBTreeGroup<O extends Comparable<O>> {
 	 BinaryTree[] table; // 槽数组，也称桶数组。
@@ -18,6 +20,7 @@ public class HashBTreeGroup<O extends Comparable<O>> {
           if(initialCapacity==0) initialCapacity=1;
           this.loadFactor = loadFactor;
           this.table = new BTree[initialCapacity];
+          this.initBTreeGroup(this.table);
           this.threshold = (int)(initialCapacity * loadFactor);
      }
  
@@ -30,9 +33,11 @@ public class HashBTreeGroup<O extends Comparable<O>> {
           BinaryTree e = tab[index];
           if(e!=null){
         	  BinaryTreeNode node = (BinaryTreeNode) e.find(o);
-        	  O old = (O) node.owner();
-        	  node.owner(o);
-        	  return old;
+        	  if(node!=null){
+        		  O old = (O) node.owner();
+            	  node.owner(o);
+            	  return old;
+        	  }
           }
 
           // 是否需要rehash
@@ -78,7 +83,8 @@ public class HashBTreeGroup<O extends Comparable<O>> {
           int oldCapacity = table.length;
           BinaryTree<O>[] oldGroup = table;
           int newCapacity = (oldCapacity << 1) + 1; // 2倍+1
-          BinaryTree[] newGroup = new BinaryTree[newCapacity];
+          BinaryTree[] newGroup = new BTree[newCapacity];
+          this.initBTreeGroup(newGroup);
           threshold = (int)(newCapacity * loadFactor);
           table = newGroup;
  
@@ -91,4 +97,10 @@ public class HashBTreeGroup<O extends Comparable<O>> {
           }
  
      }
+     
+     protected void initBTreeGroup(BinaryTree[] btr) {
+		for(int i = 0;i<btr.length;i++){
+			btr[i] = new BTree();
+		}
+	}
 }

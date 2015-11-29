@@ -28,7 +28,7 @@ public class ClientConfig {
 		return port;
 	}
 
-	public ClientConfig(int port, String serverAddr, Mode mode, int idx) {
+	public ClientConfig(int port, String serverAddr, Mode mode) {
 		super();
 		this.port = port;
 		this.serverAddr = serverAddr;

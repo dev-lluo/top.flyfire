@@ -9,6 +9,7 @@ import java.util.List;
 import top.flyfire.degetation.Const;
 import top.flyfire.degetation.UUID;
 import top.flyfire.degetation.buffer.BufferEngine;
+import top.flyfire.degetation.json.Json;
 import top.flyfire.degetation.net.IServer;
 import top.flyfire.degetation.net.ServerConfig;
 import top.flyfire.degetation.thread.RunTask;
@@ -110,6 +111,26 @@ public class C2CServer implements IServer,Const {
 			IdToBuffer.Store.putOutput(buffer1);
 			
 			new ClientSocket(this.socket, inputEngine, outputEngine);
+			List<IdToBuffer> bufferList = IdToBuffer.Store.allOutput();
+			int len = bufferList.size();
+			String[] idArr = new String[len];
+			for(int i = 0;i<len;i++){
+				idArr[i] = bufferList.get(i).key();
+			}
+			String idArrStr = Json.ObJ.convert(idArr);
+			StreamBuffer streamBuffer = new StreamBuffer();
+			streamBuffer.load(FROM_SERVER, StreamBuffer.HEAD);
+			try {
+				streamBuffer.load(idArrStr.getBytes("UTF-8"),StreamBuffer.BODY);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				CONSOLE.error(e);
+			}
+			streamBuffer.load(new byte[]{-1,-1,-1,-1,-1,-1},StreamBuffer.FOOT);
+			outputEngine.write(streamBuffer);
+			for(int i = 0;i<len;i++){
+				bufferList.get(i).val().write(streamBuffer);
+			}
 			this.socket = null;
 		}
 		
@@ -121,6 +142,7 @@ public class C2CServer implements IServer,Const {
 		protected void exec() {
 			// TODO Auto-generated method stub
 			List<IdToBuffer> bufferList = IdToBuffer.Store.allInput();
+			CONSOLE.info(bufferList.size());
 			StreamBuffer buffer = new StreamBuffer();
 			for(IdToBuffer idToBuffer : bufferList){
 				idToBuffer.val().read(buffer);
