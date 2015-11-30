@@ -51,6 +51,14 @@ public class C2CBuffer implements IBuffer<byte[]> {
 	public C2CBuffer(){
 		super();
 	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		this.head = null;
+		this.header = null;
+		this.body = null;
+	}
 	
 	
 

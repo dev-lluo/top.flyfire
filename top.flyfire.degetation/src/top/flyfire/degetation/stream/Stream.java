@@ -28,8 +28,9 @@ public class Stream implements Const{
 			for(int len = ins.read(by);len>0;len = ins.read(by)){
 				byte[] real = new byte[len];
 				System.arraycopy(by, 0, real, 0, len);
-				CONSOLE.info(real);
+				CONSOLE.info("read 1");
 				if(task.exec(real, len))return;
+				CONSOLE.info("read 4");
 			}
 			
 		} catch (IOException e) {

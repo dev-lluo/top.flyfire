@@ -25,6 +25,7 @@ public class Main2 {
 				}
 			}
 			Thread.sleep(10);
+			buffer.clear();
 		}
 	}
 }

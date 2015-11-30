@@ -29,15 +29,15 @@ public abstract class RunTask <T> implements Runnable ,Level ,Const{
 
 
 	protected void info(String info){
-		CONSOLE.info(info);
+		//CONSOLE.info(info);
 	}
 	
 	protected void doBefore(){
-		CONSOLE.info("before=======================================");
+		//CONSOLE.info("before=======================================");
 	}
 	
 	protected void doAfter() {
-		CONSOLE.info("after========================================");
+		//CONSOLE.info("after========================================");
 		this.needWait = false;
 	}
 	

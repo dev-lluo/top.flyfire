@@ -47,7 +47,7 @@ public class ThreadPool implements Level, Const  {
 								}else{
 									ThreadPool.this.curQueueSize--;
 								}
-								CONSOLE.info(this.localName+"|taken task...");
+								//CONSOLE.info(this.localName+"|taken task...");
 							}
 						}
 						if (r != null) {
@@ -56,7 +56,7 @@ public class ThreadPool implements Level, Const  {
 							r.run();// 执行任务
 							long endTime = System.currentTimeMillis();
 							r.info(this.localName);
-							CONSOLE.info(this.localName+"@["+(endTime-startTime)+"ms]finished task...");
+							//CONSOLE.info(this.localName+"@["+(endTime-startTime)+"ms]finished task...");
 						}
 						r = null;
 					}

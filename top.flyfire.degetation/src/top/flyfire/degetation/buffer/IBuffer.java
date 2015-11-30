@@ -6,4 +6,5 @@ public interface IBuffer<T> {
 	T unLoad();
 	void load(T t);
 	boolean isEmpty();
+	void clear();
 }

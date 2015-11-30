@@ -145,7 +145,7 @@ public class C2CServer implements IServer,Const {
 		protected void exec() {
 			// TODO Auto-generated method stub
 			List<IdToBuffer> bufferList = IdToBuffer.Store.allInput();
-			CONSOLE.info(bufferList.size());
+			//CONSOLE.info(bufferList.size());
 			C2CBuffer c2cBuffer = new C2CBuffer();
 			for(IdToBuffer idToBuffer : bufferList){
 				idToBuffer.val().read(c2cBuffer);

@@ -99,7 +99,7 @@ public interface Json {
 		private static String ObjectJSON(Object obj,int deep) throws IllegalArgumentException, IllegalAccessException {
 			deep--;
 			Class<?> clss =obj.getClass();
-			StringBuffer sb = new StringBuffer("{ ");
+			StringBuffer sb = new StringBuffer("{");
 			Field[] fieldArr = clss.getDeclaredFields();
 			for(int i = 0;i<fieldArr.length;i++){
 				Field field = fieldArr[i];
@@ -129,22 +129,32 @@ public interface Json {
 					sb.append(",");
 				}
 			}
-			sb.replace(sb.length()-1, sb.length(), "}");
+			int sbLen = sb.length();
+			if(sbLen>1){
+				sb.replace(sbLen-1, sbLen, "}");
+			}else{
+				sb.append("}");
+			}
 			return sb.toString();
 		}
 		private static String ArrayJSON(Object obj,int deep){
 			deep--;
 			if(ObJ.convert("",deep)==ObJ.defaultSkip)return ObJ.defaultSkip;
-			StringBuffer sb = new StringBuffer("[ ");
+			StringBuffer sb = new StringBuffer("[");
 			for(int i = 0,len = Array.getLength(obj);i<len;i++){
 				sb.append(ObJ.convert(Array.get(obj, i),deep)+" ,");
 			}
-			sb.replace(sb.length()-1, sb.length(), "]");
+			int sbLen = sb.length();
+			if(sbLen>1){
+				sb.replace(sbLen-1, sbLen, "]");
+			}else{
+				sb.append("]");
+			}
 			return sb.toString();
 		}
 		private static String MapJSON(Object obj,int deep){
 			deep--;
-			StringBuffer sb = new StringBuffer("{ ");
+			StringBuffer sb = new StringBuffer("{");
 			Map objs = (Map)obj;
 			Set<Entry> entrySet = objs.entrySet();
 			for(Map.Entry entry : entrySet){
@@ -157,18 +167,28 @@ public interface Json {
 				sb.append(temp);
 				sb.append(",");
 			}
-			sb.replace(sb.length()-1, sb.length(), "}");
+			int sbLen = sb.length();
+			if(sbLen>1){
+				sb.replace(sbLen-1, sbLen, "}");
+			}else{
+				sb.append("}");
+			}
 			return sb.toString();
 		}
 		private static String ListJSON(Object obj,int deep){
 			deep--;
 			if(ObJ.convert("",deep)==ObJ.defaultSkip)return ObJ.defaultSkip;
-			StringBuffer sb = new StringBuffer("[ ");
+			StringBuffer sb = new StringBuffer("[");
 			Collection objs = (Collection)obj;
 			for(Object o : objs){
 				sb.append(ObJ.convert(o,deep)+" ,");
 			}
-			sb.replace(sb.length()-1, sb.length(), "]");
+			int sbLen = sb.length();
+			if(sbLen>1){
+				sb.replace(sbLen-1, sbLen, "]");
+			}else{
+				sb.append("]");
+			}
 			return sb.toString();
 		}
 
@@ -180,7 +200,7 @@ public interface Json {
 	 */
 	public class JsO {
 
-		private static  Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
+		private static  Pattern pattern = Pattern.compile("-?[0-9]+(.?[0-9]+)?");
 		
 		public enum JType {
 			ARR, KVL, STR, NUM, NULL
@@ -199,15 +219,14 @@ public interface Json {
 				Map<String,Object> temp = new HashMap<String, Object>();
 				for(Iterator<String> i = result.keySet().iterator();i.hasNext();){
 					String key  = i.next();
-					i.remove();
 					Object val = result.get(key);
 					val = JsO.convert(val==null?null:val.toString());
 					temp.put(key, val);
+					i.remove();
 				}
 				for(Iterator<String> i = temp.keySet().iterator();i.hasNext();){
 					String key  = i.next();
 					result.put(key, temp.get(key));
-					System.out.println(result.get(key));
 				}
 				return (T) result;
 			}else if(type==JType.ARR){
@@ -218,7 +237,7 @@ public interface Json {
 				}
 				return (T) result;
 			}else if(type==JType.STR){
-				return (T) json;
+				return (T) JsO.prevStrData(json);
 			}else if(type==JType.NUM){
 				return (T) new BigDecimal(json);
 			}
@@ -288,20 +307,20 @@ public interface Json {
 			Map<String,Object> kvlTemp = new HashMap<String, Object>();
 			StringBuffer temp = new StringBuffer();
 			List<Character> fruitage = JsO.husking(json);
-			Character idf = null;
-			Character prev = null;
+			char idf = '\0';
+			char prev = '\0';
 			for(int deep = 0;!fruitage.isEmpty();){
 				
 				char ch = fruitage.remove(0);
-				if(ch=='"'&&idf==null&&prev!='\\'){
+				if(ch=='"'&&idf=='\0'&&prev!='\\'){
 					deep++;
 					idf = ch;
-				}else if((ch=='{'||ch=='[')&&idf==null){
+				}else if((ch=='{'||ch=='[')&&idf=='\0'){
 					deep++;
 				}else if(ch=='"'&&idf=='"'&&prev!='\\'){
 					deep--;
-					idf = null;
-				}else if((ch=='}'||ch==']')&&idf==null){
+					idf = '\0';
+				}else if((ch=='}'||ch==']')&&idf=='\0'){
 					deep--;
 				}
 				
@@ -311,6 +330,9 @@ public interface Json {
 					temp.append(ch);
 				}else{
 					String key = temp.substring(0,temp.indexOf(":"));
+					if(JsO.dist(key)==JType.STR){
+						key = JsO.prevStrData(key);
+					}
 					String value = temp.substring(temp.indexOf(":")+1);
 					kvlTemp.put(key,value);
 					temp.delete(0, temp.length());
@@ -318,6 +340,9 @@ public interface Json {
 				
 				if(fruitage.size()==0){
 					String key = temp.substring(0,temp.indexOf(":"));
+					if(JsO.dist(key)==JType.STR){
+						key = JsO.prevStrData(key);
+					}
 					String value = temp.substring(temp.indexOf(":")+1);
 					kvlTemp.put(key,value);
 					temp.delete(0, temp.length());
@@ -325,6 +350,10 @@ public interface Json {
 				prev = ch;
 			}
 			return kvlTemp;
+		}
+		
+		private static String prevStrData(String data){
+			return data.substring(1,data.length()-1);
 		}
 		
 		private static List<Character> husking(String json){

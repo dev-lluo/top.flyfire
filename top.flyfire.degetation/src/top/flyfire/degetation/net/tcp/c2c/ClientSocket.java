@@ -70,16 +70,12 @@ public class ClientSocket  {
 				@Override
 				public boolean exec(byte[] by, int len) throws IOException {
 					// TODO Auto-generated method stub
+					CONSOLE.info("read 2");
 					fct.build(by);
-					return true;
+					CONSOLE.info("read 3");
+					return false;
 				}
 			});
-		}
-		
-		@Override
-		public boolean needRepeat() {
-			// TODO Auto-generated method stub
-			return true;
 		}
 		
 	}
