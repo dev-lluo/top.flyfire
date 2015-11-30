@@ -1,9 +1,9 @@
 package top.flyfire.degetation.net.tcp.c2c;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Date;
 
 import top.flyfire.degetation.Const;
 import top.flyfire.degetation.buffer.BufferEngine;
@@ -22,8 +22,8 @@ public class C2Client implements IClient ,Const{
 	@SuppressWarnings("unused")
 	private ClientSocket clientSocket;
 	
-	private BufferEngine<byte[][]> inputEngine = new BufferEngine<byte[][]>();
-	private BufferEngine<byte[][]> outputEngine = new BufferEngine<byte[][]>();
+	private BufferEngine<byte[]> inputEngine = new BufferEngine<byte[]>();
+	private BufferEngine<byte[]> outputEngine = new BufferEngine<byte[]>();
 	
 	@Override
 	public void startup(ClientConfig config) {
@@ -62,28 +62,22 @@ public class C2Client implements IClient ,Const{
 	}
 
 	@Override
-	public void send(byte[] by, String cId) {
+	public void send(byte[] by, String cId, String contentType) {
 		// TODO Auto-generated method stub
-		try {
-			byte[] head = cId.getBytes("UTF-8");
+			C2CHeader header = new C2CHeader(cId, new Date().toString(), contentType);
 			byte[] body = by;
-			byte[] foot = {-1,-1,-1,-1,-1,-1};
-			StreamBuffer buffer = new StreamBuffer();
-			buffer.load(head, StreamBuffer.HEAD);
-			buffer.load(body,StreamBuffer.BODY);
-			buffer.load(foot,StreamBuffer.FOOT);
+			C2CBuffer buffer = new C2CBuffer();
+			buffer.head(header.serialize());
+			buffer.load(body);
 			outputEngine.write(buffer);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			Const.CONSOLE.error(e);
-		}
+
 		
 	}
 	
 	
 
 	@Override
-	public void recv(StreamBuffer buffer) {
+	public void recv(C2CBuffer buffer) {
 		// TODO Auto-generated method stub
 		inputEngine.read(buffer);
 	}

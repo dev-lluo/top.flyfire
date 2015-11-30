@@ -1,0 +1,5 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+public class C2CHeader {
+
+}

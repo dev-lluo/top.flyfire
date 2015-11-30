@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 import java.util.List;
 
 import top.flyfire.degetation.Const;
@@ -101,8 +102,8 @@ public class C2CServer implements IServer,Const {
 			 */
 			String inputId = UUID.$.createGUID();
 			String outputId = UUID.$.createGUID();
-			BufferEngine<byte[][]> inputEngine = new BufferEngine<byte[][]>();
-			BufferEngine<byte[][]> outputEngine = new BufferEngine<byte[][]>();
+			BufferEngine<byte[]> inputEngine = new BufferEngine<byte[]>();
+			BufferEngine<byte[]> outputEngine = new BufferEngine<byte[]>();
 			
 			IdToBuffer buffer0 = new IdToBuffer(inputId, inputEngine);
 			IdToBuffer.Store.putInput(buffer0);
@@ -118,18 +119,20 @@ public class C2CServer implements IServer,Const {
 				idArr[i] = bufferList.get(i).key();
 			}
 			String idArrStr = Json.ObJ.convert(idArr);
-			StreamBuffer streamBuffer = new StreamBuffer();
-			streamBuffer.load(FROM_SERVER, StreamBuffer.HEAD);
+			
+			C2CHeader header = new C2CHeader(C2CHeader.FROM_SERVER,new Date().toString(),C2CHeader.CType.TEXT);
+			C2CBuffer c2cBuffer = new C2CBuffer();
+			c2cBuffer.head(header.serialize());
+			
 			try {
-				streamBuffer.load(idArrStr.getBytes("UTF-8"),StreamBuffer.BODY);
+				c2cBuffer.load(idArrStr.getBytes("UTF-8"));
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				CONSOLE.error(e);
 			}
-			streamBuffer.load(new byte[]{-1,-1,-1,-1,-1,-1},StreamBuffer.FOOT);
-			outputEngine.write(streamBuffer);
+			
 			for(int i = 0;i<len;i++){
-				bufferList.get(i).val().write(streamBuffer);
+				bufferList.get(i).val().write(c2cBuffer);
 			}
 			this.socket = null;
 		}
@@ -143,19 +146,14 @@ public class C2CServer implements IServer,Const {
 			// TODO Auto-generated method stub
 			List<IdToBuffer> bufferList = IdToBuffer.Store.allInput();
 			CONSOLE.info(bufferList.size());
-			StreamBuffer buffer = new StreamBuffer();
+			C2CBuffer c2cBuffer = new C2CBuffer();
 			for(IdToBuffer idToBuffer : bufferList){
-				idToBuffer.val().read(buffer);
-				if(!buffer.isEmpty()){
-					try {
-						String id = new String(buffer.unLoad(StreamBuffer.HEAD),"UTF-8");
-						byte[] head = idToBuffer.key().getBytes("UTF-8");
-						buffer.replace(head, StreamBuffer.HEAD);
-						IdToBuffer.Store.findOutput(id).val().write(buffer);
-					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
-						Const.CONSOLE.error(e);
-					}
+				idToBuffer.val().read(c2cBuffer);
+				if(!c2cBuffer.isEmpty()){
+						String id = c2cBuffer.header().getTarget();
+						C2CHeader header = new C2CHeader(idToBuffer.key(),new Date().toString(),C2CHeader.CType.TEXT);
+						c2cBuffer.head(header.serialize());
+						IdToBuffer.Store.findOutput(id).val().write(c2cBuffer);
 				}
 			}
 		}

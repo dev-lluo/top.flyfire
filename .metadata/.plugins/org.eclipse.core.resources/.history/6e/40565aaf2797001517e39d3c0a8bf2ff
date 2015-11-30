@@ -1,0 +1,7 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.buffer.IBuffer;
+
+public class C2CBuffer implements IBuffer<byte[]> {
+
+}

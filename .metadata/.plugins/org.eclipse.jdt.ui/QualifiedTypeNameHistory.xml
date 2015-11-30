@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.Throwable"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.Client"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.ServerEngine"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.ClientBuffer"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.ClientOutput"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.IServer"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.go.Go"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.go.Go.GoTask"/>
-<fullyQualifiedTypeName name="java.net.ServerSocket"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToSocket"/>
-<fullyQualifiedTypeName name="java.io.OutputStream"/>
-<fullyQualifiedTypeName name="java.io.InputStream"/>
-<fullyQualifiedTypeName name="java.net.InetAddress"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.stream.Stream"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.stream.Stream.Task"/>
 <fullyQualifiedTypeName name="java.lang.Iterable"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.StreamBuffre"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.DealInput"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.DealOutput"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.buffer.BufferEngine"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.UUID"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.Dictionary"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CServer.NewClient"/>
@@ -46,8 +29,6 @@
 <fullyQualifiedTypeName name="top.flyfire.degetation.tree.binarytree.HashBTreeGroup"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.buffer.IBuffer"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.ClientSocket.StreamBuffer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.StreamBuffer"/>
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.IdToBuffer"/>
@@ -58,6 +39,25 @@
 <fullyQualifiedTypeName name="top.flyfire.degetation.net.ClientConfig"/>
 <fullyQualifiedTypeName name="java.net.Socket"/>
 <fullyQualifiedTypeName name="javax.management.RuntimeErrorException"/>
-<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
 <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.buffer.IBuffer"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.StreamFactory"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.Const"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.json.Json"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CHeader.Tag"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CHeader.CType"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CStrmFct"/>
+<fullyQualifiedTypeName name="java.nio.Buffer"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.buffer.BufferEngine"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CHeader"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.net.tcp.c2c.C2CBuffer"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.json.Json.ObJ"/>
+<fullyQualifiedTypeName name="test.ClassA"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="top.flyfire.degetation.json.Json.JsO"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
 </qualifiedTypeNameHistroy>

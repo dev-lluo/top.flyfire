@@ -1,0 +1,17 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.net.StreamFactory;
+
+public class C2CStrmFct implements StreamFactory<C2CBuffer> {
+	
+	public static final byte[] END = {-1,-1,-1,-1,-1,-1};
+	
+	public static final byte[] HD_BD_SEP = {0,0,0,0,0,0};
+
+	@Override
+	public C2CBuffer build(byte[] by) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -3,7 +3,6 @@ package top.flyfire.degetation.buffer;
 import java.util.LinkedList;
 import java.util.List;
 
-import top.flyfire.degetation.Const;
 
 
 public class BufferEngine<T> {
@@ -36,14 +35,9 @@ public class BufferEngine<T> {
 	public void read(IBuffer<T> buffer){
 		synchronized (bufferQueue) {
 			if(!bufferQueue.isEmpty()){
-				buffer.load(bufferQueue.remove(0).unLoad());
-			}else{
-				try {
-					bufferQueue.wait(10);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					Const.CONSOLE.error(e);
-				}
+				IBuffer<T> temp = bufferQueue.remove(0);
+				buffer.head(temp.head());
+				buffer.load(temp.unLoad());
 			}
 		}
 	}

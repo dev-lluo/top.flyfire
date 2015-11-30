@@ -1,0 +1,47 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.buffer.IBuffer;
+
+public class C2CBuffer implements IBuffer<byte[]> {
+	
+	private byte[] head;
+	
+	private byte[] body;
+	
+	private byte[] foot;
+	
+	public byte[] head(){
+		return this.head;
+	}
+	
+	public void head(byte[] head){
+		this.head = head;
+	}
+	
+	public byte[] foot(){
+		return this.foot;
+	}
+	
+	public void foot(byte[] foot){
+		this.foot = foot;
+	}
+
+	@Override
+	public byte[] unLoad() {
+		// TODO Auto-generated method stub
+		return this.body;
+	}
+
+	@Override
+	public void load(byte[] t) {
+		// TODO Auto-generated method stub
+		this.body = t;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

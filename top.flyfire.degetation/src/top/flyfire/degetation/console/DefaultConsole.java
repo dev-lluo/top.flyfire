@@ -14,13 +14,13 @@ public class DefaultConsole implements IConsole,Json,Const{
 	@Override
 	public void warn(Object obj) {
 		// TODO Auto-generated method stub
-		System.out.println("WARN$"+System.currentTimeMillis()+" : "+ObJ.convert(obj));
+		System.err.println("WARN$"+System.currentTimeMillis()+" : "+ObJ.convert(obj));
 	}
 
 	@Override
 	public void error(Object obj) {
 		// TODO Auto-generated method stub
-		System.out.println("ERROR$"+System.currentTimeMillis()+" : "+ObJ.convert(obj));
+		System.err.println("ERROR$"+System.currentTimeMillis()+" : "+ObJ.convert(obj));
 	}
 
 	@Override
@@ -38,13 +38,13 @@ public class DefaultConsole implements IConsole,Json,Const{
 	@Override
 	public void warn(Throwable e) {
 		// TODO Auto-generated method stub
-		System.out.println("WARN$"+System.currentTimeMillis()+" : "+e.getMessage());
+		System.err.println("WARN$"+System.currentTimeMillis()+" : "+e.getMessage());
 	}
 
 	@Override
 	public void error(Throwable e) {
 		// TODO Auto-generated method stub
-		System.out.println("ERROR$"+System.currentTimeMillis()+" : "+e.getMessage());
+		System.err.println("ERROR$"+System.currentTimeMillis()+" : "+e.getMessage());
 	}
 
 	@Override
@@ -62,13 +62,13 @@ public class DefaultConsole implements IConsole,Json,Const{
 	@Override
 	public void warn(String msg) {
 		// TODO Auto-generated method stub
-		System.out.println("WARN$"+System.currentTimeMillis()+" : "+msg);
+		System.err.println("WARN$"+System.currentTimeMillis()+" : "+msg);
 	}
 
 	@Override
 	public void error(String msg) {
 		// TODO Auto-generated method stub
-		System.out.println("ERROR$"+System.currentTimeMillis()+" : "+msg);
+		System.err.println("ERROR$"+System.currentTimeMillis()+" : "+msg);
 	}
 
 	@Override

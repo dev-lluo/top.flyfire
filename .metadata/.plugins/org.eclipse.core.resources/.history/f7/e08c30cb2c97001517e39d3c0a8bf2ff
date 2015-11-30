@@ -1,0 +1,27 @@
+package top.flyfire.degetation.net.tcp.c2c;
+
+import top.flyfire.degetation.net.StreamFactory;
+
+public class C2CStrmFct implements StreamFactory {
+	
+	public static final byte[] END = {-1,-1,-1,-1,-1,-1};
+	
+	public static final byte[] HD_BD_SEP = {0,0,0,0,0,0};
+	
+	private byte[] byteStore = new byte[0];
+
+	@Override
+	public void build(byte[] by) {
+		// TODO Auto-generated method stub
+		byte[] temp = new byte[this.byteStore.length+by.length];
+		System.arraycopy(this.byteStore, 0, temp, 0, this.byteStore.length);
+		System.arraycopy(by, 0, temp, this.byteStore.length, by.length);
+		this.byteStore = temp;
+		this.readAsBuffer();
+	}
+	
+	public void readAsBuffer(){
+		if(this.byteStore.length<12)return;
+	}
+
+}

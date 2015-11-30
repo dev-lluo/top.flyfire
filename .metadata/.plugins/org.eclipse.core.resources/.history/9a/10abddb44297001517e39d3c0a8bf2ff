@@ -1,0 +1,6 @@
+package test;
+
+public class ClassA {
+	private int s = 1;
+	private String s1 = "2";
+}

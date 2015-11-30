@@ -1,0 +1,9 @@
+package test;
+
+import top.flyfire.degetation.json.Json.ObJ;
+
+public class Main4 {
+	public static void main(String[] args) {
+		System.out.println(ObJ.convert(new ClassA()));
+	}
+}

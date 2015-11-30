@@ -183,7 +183,7 @@ public interface Json {
 		private static  Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
 		
 		public enum JType {
-			ARR, KVL, STR, NUM
+			ARR, KVL, STR, NUM, NULL
 		}
 
 		@SuppressWarnings("unchecked")
@@ -191,10 +191,23 @@ public interface Json {
 			JType type = JsO.dist(json);
 			if(type==JType.KVL){
 				Map<String,Object> result = JsO.kvlReadAdapter(json);
-				Set<Entry<String,Object>> set = result.entrySet();
-				for(Iterator<Entry<String,Object>> i = set.iterator();i.hasNext();){
-					Entry<String,Object> entry = i.next();
-					entry.setValue(JsO.convert(entry.getValue().toString()));
+//				Set<Entry<String,Object>> set = result.entrySet();
+//				for(Iterator<Entry<String,Object>> i = set.iterator();i.hasNext();){
+//					Entry<String,Object> entry = i.next();
+//					entry.setValue(JsO.convert(entry.getValue().toString()));
+//				}
+				Map<String,Object> temp = new HashMap<String, Object>();
+				for(Iterator<String> i = result.keySet().iterator();i.hasNext();){
+					String key  = i.next();
+					i.remove();
+					Object val = result.get(key);
+					val = JsO.convert(val==null?null:val.toString());
+					temp.put(key, val);
+				}
+				for(Iterator<String> i = temp.keySet().iterator();i.hasNext();){
+					String key  = i.next();
+					result.put(key, temp.get(key));
+					System.out.println(result.get(key));
 				}
 				return (T) result;
 			}else if(type==JType.ARR){
@@ -213,7 +226,9 @@ public interface Json {
 		}
 
 		private static JType dist(String json) {
-			if (json.startsWith("{") && json.endsWith("}")) {
+			if(json==null||"null".equals(json)){
+				return JType.NULL;
+			}else if (json.startsWith("{") && json.endsWith("}")) {
 				return JType.KVL;
 			} else if (json.startsWith("[") && json.endsWith("]")) {
 				return JType.ARR;

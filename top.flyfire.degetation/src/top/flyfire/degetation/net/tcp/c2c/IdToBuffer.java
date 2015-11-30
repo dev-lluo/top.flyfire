@@ -7,11 +7,11 @@ import top.flyfire.degetation.KVal;
 import top.flyfire.degetation.buffer.BufferEngine;
 import top.flyfire.degetation.tree.binarytree.HashBTreeGroup;
 
-public class IdToBuffer implements KVal<String, BufferEngine<byte[][]>> ,Comparable<IdToBuffer>{
+public class IdToBuffer implements KVal<String, BufferEngine<byte[]>> ,Comparable<IdToBuffer>{
 	
 	private String id;
 	
-	private BufferEngine<byte[][]> engine;
+	private BufferEngine<byte[]> engine;
 
 	@Override
 	public String key() {
@@ -20,13 +20,13 @@ public class IdToBuffer implements KVal<String, BufferEngine<byte[][]>> ,Compara
 	}
 
 	@Override
-	public BufferEngine<byte[][]> val() {
+	public BufferEngine<byte[]> val() {
 		// TODO Auto-generated method stub
 		return this.engine;
 	}
 	
 	
-	public IdToBuffer(String id,BufferEngine<byte[][]> engine){
+	public IdToBuffer(String id,BufferEngine<byte[]> engine){
 		this.id = id;
 		this.engine = engine;
 	}

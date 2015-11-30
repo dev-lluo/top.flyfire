@@ -18,9 +18,9 @@ public class ClientSocket  {
 	
 	private final Socket socket;
 	
-	private final BufferEngine<byte[][]> inputEngine;
+	private final BufferEngine<byte[]> inputEngine;
 	
-	private final BufferEngine<byte[][]> outputEngine;
+	private final BufferEngine<byte[]> outputEngine;
 	
 	private final OutputStream outputStream;
 	
@@ -36,7 +36,7 @@ public class ClientSocket  {
 	
 	private final ThreadPool pool;
 	
-	public ClientSocket(Socket socket, BufferEngine<byte[][]> inputEngine, BufferEngine<byte[][]> outputEngine) {
+	public ClientSocket(Socket socket, BufferEngine<byte[]> inputEngine, BufferEngine<byte[]> outputEngine) {
 		super();
 		this.socket = socket;
 		this.inputEngine = inputEngine;
@@ -61,23 +61,19 @@ public class ClientSocket  {
 
 	
 	public class DealInput extends RunTask<byte[][]>{
-
+		C2CStrmFct fct = new C2CStrmFct(ClientSocket.this.inputEngine);
 		@Override
 		protected void exec() {
 			// TODO Auto-generated method stub
-			final StreamBuffer buffer = new StreamBuffer();
 			Stream.run(ClientSocket.this.inputStream, new Task() {
 				
 				@Override
 				public boolean exec(byte[] by, int len) throws IOException {
 					// TODO Auto-generated method stub
-					boolean isEnd = buffer.isEnd(by);
-					int pos = buffer.isEmpty()?StreamBuffer.HEAD:(isEnd?StreamBuffer.FOOT:StreamBuffer.BODY);
-					buffer.load(by, pos);
-					return isEnd;
+					fct.build(by);
+					return true;
 				}
 			});
-			ClientSocket.this.inputEngine.write(buffer);
 		}
 		
 		@Override
@@ -93,15 +89,17 @@ public class ClientSocket  {
 		@Override
 		protected void exec() {
 			// TODO Auto-generated method stub
-			StreamBuffer buffer = new StreamBuffer();
+			C2CBuffer buffer = new C2CBuffer();
 			ClientSocket.this.outputEngine.read(buffer);
 			if(!buffer.isEmpty()){
 				try {
-					ClientSocket.this.outputStream.write(buffer.unLoad(StreamBuffer.HEAD));
+					ClientSocket.this.outputStream.write(buffer.head());
 					ClientSocket.this.outputStream.flush();
-					ClientSocket.this.outputStream.write(buffer.unLoad(StreamBuffer.BODY));
+					ClientSocket.this.outputStream.write(C2CStrmFct.HD_BD_SEP);
 					ClientSocket.this.outputStream.flush();
-					ClientSocket.this.outputStream.write(buffer.unLoad(StreamBuffer.FOOT));
+					ClientSocket.this.outputStream.write(buffer.unLoad());
+					ClientSocket.this.outputStream.flush();
+					ClientSocket.this.outputStream.write(C2CStrmFct.END);
 					ClientSocket.this.outputStream.flush();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
